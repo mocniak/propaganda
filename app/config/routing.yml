@@ -1,0 +1,3 @@
+homepage:
+    path:     /
+    defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::indexAction }

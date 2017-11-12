@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('static/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('static/css/global.css') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div class="container">
+    <div class="logo"><img style="width: 100px; margin: 5px" src="{{ asset('static/img/chain_min.svg.png') }}"></div>
+    <div class="navbar navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a id="pimcore-navigation-renderer-menu-4" class=" main" href="/en/introduction">Introduction</a>
+                    </li>
+                    <li class="dropdown">
+                        <a id="pimcore-navigation-renderer-menu-3" class="main dropdown-toggle" href="/en/basic-examples">Basic Examples</a>
+                    </li>
+                    <li class="dropdown">
+                        <a id="pimcore-navigation-renderer-menu-5" class="main dropdown-toggle" href="/en/advanced-examples">Advanced Examples</a>
+                    </li>
+                    <li>
+                        <a id="pimcore-navigation-renderer-menu-6" class=" main" href="/en/experiments">Experiments</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

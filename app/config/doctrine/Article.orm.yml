@@ -1,0 +1,13 @@
+Propaganda\Domain\Entity\Article:
+  type: entity
+  table: articles
+  id:
+    id:
+      type: uuid
+      generator: { strategy: NONE }
+  fields:
+    title:
+      type: string
+      length: 120
+    description:
+      type: text
