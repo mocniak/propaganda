@@ -2,9 +2,11 @@
 
 namespace Propaganda\Domain;
 
-use Propaganda\Domain\Dto\NewArticleDto;
+use Propaganda\Domain\Dto\NewArticleRequest;
+use Propaganda\Domain\Dto\NewArticleResponse;
 use Propaganda\Domain\Entity\Article;
 use Propaganda\Domain\Repository\ArticleRepositoryInterface;
+use Ramsey\Uuid\UuidInterface;
 
 class ArticleService
 {
@@ -18,9 +20,15 @@ class ArticleService
         $this->articleRepository = $articleRepository;
     }
 
-    public function addArticle(NewArticleDto $dto): void
+    public function addArticle(NewArticleRequest $dto): NewArticleResponse
     {
         $article = new Article($dto->title, $dto->content);
         $this->articleRepository->save($article);
+        return new NewArticleResponse(true, $article->getId());
+    }
+
+    public function getArticle(UuidInterface $id): Article
+    {
+        return $this->articleRepository->get($id);
     }
 }

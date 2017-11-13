@@ -9,5 +9,5 @@ Propaganda\Domain\Entity\Article:
     title:
       type: string
       length: 120
-    description:
+    content:
       type: text

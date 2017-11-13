@@ -57,7 +57,7 @@ doctrine:
         auto_mapping: true
         mappings:
             Propaganda:
-                type: annotation
+                type: yml
                 dir: '%kernel.project_dir%/app/config/doctrine'
                 is_bundle: false
                 prefix: Propaganda\Domain\Entity

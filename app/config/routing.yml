@@ -1,3 +1,15 @@
 homepage:
-    path:     /
-    defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::indexAction }
+  path:     /
+  defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::indexAction }
+
+show_article:
+  path: /article/{id}
+  defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::articleAction }
+
+create_article:
+  path: /admin/create-article
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createArticleAction }
+
+edit_article:
+  path: /admin/edit-article/{id}
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editArticleAction }
