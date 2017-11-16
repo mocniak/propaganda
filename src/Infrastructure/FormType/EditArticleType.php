@@ -1,6 +1,6 @@
 <?php
 
-namespace Propaganda\Infrastructure\Type;
+namespace Propaganda\Infrastructure\FormType;
 
 use Propaganda\Domain\Dto\EditArticleRequest;
 use Ramsey\Uuid\Uuid;

@@ -18,3 +18,7 @@ submit_edit_article:
   methods: [POST]
   path: /admin/submit-edit-article
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::submitEditArticleAction }
+
+create_image:
+  path: /admin/create-image
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createImageAction }

@@ -5,10 +5,14 @@ namespace Propaganda\Infrastructure\Controller;
 use Propaganda\Domain\ArticleService;
 use Propaganda\Domain\Dto\EditArticleRequest;
 use Propaganda\Domain\Dto\NewArticleRequest;
-use Propaganda\Infrastructure\Type\CreateArticleType;
-use Propaganda\Infrastructure\Type\EditArticleType;
+use Propaganda\Domain\Dto\NewImageRequest;
+use Propaganda\Domain\ImageService;
+use Propaganda\Infrastructure\FormType\CreateArticleType;
+use Propaganda\Infrastructure\FormType\CreateImageType;
+use Propaganda\Infrastructure\FormType\EditArticleType;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -59,5 +63,23 @@ class AdminController extends Controller
             return new Response(var_dump($editArticleResponse));
         }
         return new Response('ok');
+    }
+    public function createImageAction(Request $request) {
+        /** @var ArticleService $articleService */
+        $form = $this->createForm(CreateImageType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var ImageService $imageService */
+            $imageService = $this->container->get('propaganda.image');
+            $newImageRequest = new NewImageRequest();
+            /** @var UploadedFile $uploadedFile */
+            $uploadedFile = $form['image']->getData();
+            $newImageRequest->content = (file_get_contents($uploadedFile->getRealPath()));
+            $newImageRequest->mimeType = $uploadedFile->getClientMimeType();
+            $response = $imageService->addArticle($newImageRequest);
+            return new Response(var_dump($response));
+        }
+        return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);
     }
 }

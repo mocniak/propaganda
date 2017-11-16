@@ -1,6 +1,6 @@
 <?php
 
-namespace Propaganda\Infrastructure\Type;
+namespace Propaganda\Infrastructure\FormType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

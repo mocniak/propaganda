@@ -3,6 +3,12 @@
 {% block body %}
 
     <h1>{{ article.title }}</h1>
-    {{ article.content }}
+    {% for element in article.content %}
+        {% if element.type == 'text' %}
+            {{ element.content }}
+        {% elseif element.type == 'youtubeVideo' %}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ element.videoId }}" frameborder="0" allowfullscreen></iframe>
+        {% endif %}
+    {% endfor %}
 
 {% endblock %}

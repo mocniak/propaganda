@@ -12,11 +12,11 @@ class Article
      */
     private $title;
     /**
-     * @var string
+     * @var array
      */
     private $content;
 
-    public function __construct(string $title, string $content)
+    public function __construct(string $title, array $content)
     {
         $this->id = Uuid::uuid4();
         $this->title = $title;
@@ -28,7 +28,7 @@ class Article
         return $this->title;
     }
 
-    public function getContent(): string
+    public function getContent(): array
     {
         return $this->content;
     }
