@@ -17,7 +17,7 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function articleAction($id, Request $request)
+    public function articleAction($id)
     {
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');

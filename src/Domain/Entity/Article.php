@@ -37,4 +37,14 @@ class Article
     {
         return $this->id;
     }
+
+    public function setTitle(string $title)
+    {
+        $this->title = $title;
+    }
+
+    public function setContent(string $content)
+    {
+        $this->content = $content;
+    }
 }

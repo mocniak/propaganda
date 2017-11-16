@@ -1,16 +1,21 @@
 <?php
+
 namespace Propaganda\Infrastructure\Controller;
 
 use Propaganda\Domain\ArticleService;
+use Propaganda\Domain\Dto\EditArticleRequest;
 use Propaganda\Domain\Dto\NewArticleRequest;
 use Propaganda\Infrastructure\Type\CreateArticleType;
+use Propaganda\Infrastructure\Type\EditArticleType;
+use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
-    public function createArticleAction(Request $request) {
+    public function createArticleAction(Request $request)
+    {
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
         $newArticleRequest = new NewArticleRequest();
@@ -23,25 +28,36 @@ class AdminController extends Controller
             $newArticleResponse = $articleService->addArticle($newArticleRequest);
             return new Response(var_dump($newArticleResponse));
         }
-        return $this->render('admin/createArticle.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);
     }
-    public function editArticleAction(Request $request) {
+
+    public function editArticleAction($id, Request $request)
+    {
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
-        $newArticleRequest = new NewArticleRequest();
-        $form = $this->createForm(CreateArticleType::class, $newArticleRequest);
+        $article = $articleService->getArticle(Uuid::fromString($id));
+        $editArticleRequest = EditArticleRequest::fromArticle($article);
 
+        $form = $this->createForm(
+            EditArticleType::class,
+            $editArticleRequest, [
+            'action' => $this->generateUrl('submit_edit_article')
+        ]);
+
+        return $this->render('admin/editArticle.html.twig', ['form' => $form->createView()]);
+    }
+
+    public function submitEditArticleAction(Request $request)
+    {
+        $form = $this->createForm(EditArticleType::class);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $newArticleRequest = $form->getData();
-            $newArticleResponse = $articleService->addArticle($newArticleRequest);
-            return new Response(var_dump($newArticleResponse));
+            /** @var ArticleService $articleService */
+            $articleService = $this->container->get('propaganda.article');
+            $editArticleResponse = $articleService->editArticle($newArticleRequest);
+            return new Response(var_dump($editArticleResponse));
         }
-        return $this->render('admin/createArticle.html.twig', array(
-            'form' => $form->createView(),
-        ));
+        return new Response('ok');
     }
 }

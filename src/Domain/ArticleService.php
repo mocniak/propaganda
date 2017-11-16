@@ -2,6 +2,8 @@
 
 namespace Propaganda\Domain;
 
+use Propaganda\Domain\Dto\EditArticleRequest;
+use Propaganda\Domain\Dto\EditArticleResponse;
 use Propaganda\Domain\Dto\NewArticleRequest;
 use Propaganda\Domain\Dto\NewArticleResponse;
 use Propaganda\Domain\Entity\Article;
@@ -30,5 +32,14 @@ class ArticleService
     public function getArticle(UuidInterface $id): Article
     {
         return $this->articleRepository->get($id);
+    }
+
+    public function editArticle(EditArticleRequest $editArticleRequest): EditArticleResponse
+    {
+        $article = $this->getArticle($editArticleRequest->articleId);
+        $article->setTitle($editArticleRequest->title);
+        $article->setContent($editArticleRequest->content);
+        $this->articleRepository->save($article);
+        return new EditArticleResponse(true,$article->getId());
     }
 }

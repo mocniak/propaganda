@@ -13,3 +13,8 @@ create_article:
 edit_article:
   path: /admin/edit-article/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editArticleAction }
+
+submit_edit_article:
+  methods: [POST]
+  path: /admin/submit-edit-article
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::submitEditArticleAction }
