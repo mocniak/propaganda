@@ -19,6 +19,6 @@ class YoutubeVideo implements ContentInterface
 
     public function getType(): string
     {
-        return 'youtubeVideo';
+        return 'video';
     }
 }
