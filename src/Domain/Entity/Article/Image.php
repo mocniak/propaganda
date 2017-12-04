@@ -17,4 +17,9 @@ class Image implements ContentInterface
     {
         return 'image';
     }
+
+    public function getValue(): string
+    {
+        return $this->fileId->toString();
+    }
 }

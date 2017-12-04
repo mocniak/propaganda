@@ -12,7 +12,7 @@ class YoutubeVideo implements ContentInterface
         $this->videoId = $videoId;
     }
 
-    public function getVideoId(): string
+    public function getValue(): string
     {
         return $this->videoId;
     }

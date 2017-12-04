@@ -6,6 +6,9 @@ use Propaganda\Domain\ArticleService;
 use Propaganda\Domain\Dto\EditArticleRequest;
 use Propaganda\Domain\Dto\NewArticleRequest;
 use Propaganda\Domain\Dto\NewImageRequest;
+use Propaganda\Domain\Entity\Article\ContentInterface;
+use Propaganda\Domain\Entity\Article\Image;
+use Propaganda\Domain\Entity\Article\Text;
 use Propaganda\Domain\ImageService;
 use Propaganda\Infrastructure\FormType\CreateArticleType;
 use Propaganda\Infrastructure\FormType\CreateImageType;
@@ -13,6 +16,7 @@ use Propaganda\Infrastructure\FormType\EditArticleType;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -23,12 +27,17 @@ class AdminController extends Controller
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
         $newArticleRequest = new NewArticleRequest();
+
+
         $form = $this->createForm(CreateArticleType::class, $newArticleRequest);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $newArticleRequest = $form->getData();
+            $newArticleRequest->content = [
+                new Text('some random text'),
+                new Image(Uuid::uuid4())
+            ];
             $newArticleResponse = $articleService->addArticle($newArticleRequest);
             return new Response(var_dump($newArticleResponse));
         }
@@ -40,31 +49,48 @@ class AdminController extends Controller
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
         $article = $articleService->getArticle(Uuid::fromString($id));
-        $editArticleRequest = EditArticleRequest::fromArticle($article);
+//        $editArticleRequest = EditArticleRequest::fromArticle($article);
+//        $form = $this->createForm(
+//            EditArticleType::class,
+//            $editArticleRequest, [
+//            'action' => $this->generateUrl('submit_edit_article')
+//        ]);
 
-        $form = $this->createForm(
-            EditArticleType::class,
-            $editArticleRequest, [
-            'action' => $this->generateUrl('submit_edit_article')
-        ]);
+        $content = [];
 
-        return $this->render('admin/editArticle.html.twig', ['form' => $form->createView()]);
-    }
-
-    public function submitEditArticleAction(Request $request)
-    {
-        $form = $this->createForm(EditArticleType::class);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $newArticleRequest = $form->getData();
-            /** @var ArticleService $articleService */
-            $articleService = $this->container->get('propaganda.article');
-            $editArticleResponse = $articleService->editArticle($newArticleRequest);
-            return new Response(var_dump($editArticleResponse));
+        /** @var ContentInterface $item */
+        foreach ($article->getContent() as $item) {
+            $content[] = [
+                'type' => $item->getType(),
+                'value' => $item->getValue()
+            ];
         }
-        return new Response('ok');
+
+        $data = [
+            "title" => $article->getTitle(),
+            "content" => $content
+        ];
+        return new JsonResponse($data);
     }
-    public function createImageAction(Request $request) {
+
+    public function submitEditArticleAction($id, Request $request)
+    {
+        if ($request->getMethod() === "OPTIONS") return new Response('OPTIONS');
+        $data = json_decode($request->getContent(),true);
+
+//        var_dump($data);
+
+        $editArticleRequest = new EditArticleRequest(Uuid::fromString($id), $data['title'], []);
+        /** @var ArticleService $articleService */
+        $articleService = $this->container->get('propaganda.article');
+
+        $response = $articleService->editArticle($editArticleRequest);
+
+        return new Response((string)$response->success);
+    }
+
+    public function createImageAction(Request $request)
+    {
         /** @var ArticleService $articleService */
         $form = $this->createForm(CreateImageType::class);
         $form->handleRequest($request);

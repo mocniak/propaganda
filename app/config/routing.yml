@@ -11,12 +11,13 @@ create_article:
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createArticleAction }
 
 edit_article:
+#  methods: [GET]
   path: /admin/edit-article/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editArticleAction }
 
 submit_edit_article:
-  methods: [POST]
-  path: /admin/submit-edit-article
+  methods: [POST|OPTIONS]
+  path: /admin/submit-edit-article/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::submitEditArticleAction }
 
 create_image:

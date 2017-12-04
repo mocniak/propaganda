@@ -24,7 +24,7 @@ class ArticleService
 
     public function addArticle(NewArticleRequest $dto): NewArticleResponse
     {
-        $article = new Article($dto->title, [new Article\Text($dto->content)]);
+        $article = new Article($dto->title, $dto->content);
         $this->articleRepository->save($article);
         return new NewArticleResponse(true, $article->getId());
     }
@@ -40,6 +40,6 @@ class ArticleService
         $article->setTitle($editArticleRequest->title);
         $article->setContent($editArticleRequest->content);
         $this->articleRepository->save($article);
-        return new EditArticleResponse(true,$article->getId());
+        return new EditArticleResponse(true, $article->getId());
     }
 }

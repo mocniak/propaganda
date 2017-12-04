@@ -11,7 +11,7 @@ class Text implements ContentInterface
         $this->content = $content;
     }
 
-    public function getContent(): string
+    public function getValue(): string
     {
         return $this->content;
     }

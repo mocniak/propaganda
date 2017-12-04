@@ -43,7 +43,7 @@ class Article
         $this->title = $title;
     }
 
-    public function setContent(string $content)
+    public function setContent(array $content)
     {
         $this->content = $content;
     }
