@@ -9,10 +9,10 @@ use Propaganda\Domain\Dto\NewImageRequest;
 use Propaganda\Domain\Entity\Article\ContentInterface;
 use Propaganda\Domain\Entity\Article\Image;
 use Propaganda\Domain\Entity\Article\Text;
+use Propaganda\Domain\Entity\Article\YoutubeVideo;
 use Propaganda\Domain\ImageService;
 use Propaganda\Infrastructure\FormType\CreateArticleType;
 use Propaganda\Infrastructure\FormType\CreateImageType;
-use Propaganda\Infrastructure\FormType\EditArticleType;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -70,12 +70,27 @@ class AdminController extends Controller
     public function submitEditArticleAction($id, Request $request)
     {
         if ($request->getMethod() === "OPTIONS") return new Response('OPTIONS');
+
         $data = json_decode($request->getContent(), true);
 
-        $editArticleRequest = new EditArticleRequest(Uuid::fromString($id), $data['title'], []);
+        $content = [];
+
+        foreach ($data['content'] as $item) {
+            if ($item['type'] === 'text') {
+                $contentItem = new Text($item['value']);
+            } elseif ($item['type'] === 'video') {
+                $contentItem = new YoutubeVideo($item['value']);
+            } elseif ($item['type'] === 'image') {
+                $contentItem = new Image(Uuid::fromString($item['value']));
+            } else {
+                continue;
+            }
+            $content[] = $contentItem;
+        }
+
+        $editArticleRequest = new EditArticleRequest(Uuid::fromString($id), $data['title'], $content);
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
-
         $response = $articleService->editArticle($editArticleRequest);
 
         return new Response((string)$response->success);
