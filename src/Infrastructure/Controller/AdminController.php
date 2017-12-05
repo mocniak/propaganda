@@ -44,17 +44,11 @@ class AdminController extends Controller
         return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);
     }
 
-    public function editArticleAction($id, Request $request)
+    public function getArticleDataAction($id, Request $request)
     {
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
         $article = $articleService->getArticle(Uuid::fromString($id));
-//        $editArticleRequest = EditArticleRequest::fromArticle($article);
-//        $form = $this->createForm(
-//            EditArticleType::class,
-//            $editArticleRequest, [
-//            'action' => $this->generateUrl('submit_edit_article')
-//        ]);
 
         $content = [];
 
@@ -76,9 +70,7 @@ class AdminController extends Controller
     public function submitEditArticleAction($id, Request $request)
     {
         if ($request->getMethod() === "OPTIONS") return new Response('OPTIONS');
-        $data = json_decode($request->getContent(),true);
-
-//        var_dump($data);
+        $data = json_decode($request->getContent(), true);
 
         $editArticleRequest = new EditArticleRequest(Uuid::fromString($id), $data['title'], []);
         /** @var ArticleService $articleService */
@@ -88,6 +80,13 @@ class AdminController extends Controller
 
         return new Response((string)$response->success);
     }
+
+
+    public function editArticlePageAction($id, Request $request)
+    {
+        return $this->render('admin/editArticle.html.twig', ['articleId' => $id]);
+    }
+
 
     public function createImageAction(Request $request)
     {
