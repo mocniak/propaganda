@@ -96,8 +96,7 @@ class AdminController extends Controller
         return new Response((string)$response->success);
     }
 
-
-    public function editArticlePageAction($id, Request $request)
+    public function editArticlePageAction($id)
     {
         return $this->render('admin/editArticle.html.twig', ['articleId' => $id]);
     }
