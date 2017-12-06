@@ -109,14 +109,16 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var ImageService $imageService */
-            $imageService = $this->container->get('propaganda.image');
-            $newImageRequest = new NewImageRequest();
             /** @var UploadedFile $uploadedFile */
             $uploadedFile = $form['image']->getData();
-            $newImageRequest->content = (file_get_contents($uploadedFile->getRealPath()));
-            $newImageRequest->mimeType = $uploadedFile->getClientMimeType();
-            $response = $imageService->addArticle($newImageRequest);
+            $content = (file_get_contents($uploadedFile->getRealPath()));
+            $mimeType = $uploadedFile->getClientMimeType();
+
+            $newImageRequest = new NewImageRequest($mimeType, $content, $form['description']->getData());
+
+            /** @var ImageService $imageService */
+            $imageService = $this->container->get('propaganda.image');
+            $response = $imageService->addImage($newImageRequest);
             return new Response(var_dump($response));
         }
         return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);

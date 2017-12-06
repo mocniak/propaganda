@@ -1,0 +1,10 @@
+Propaganda\Domain\Entity\Image:
+  type: entity
+  table: images
+  id:
+    id:
+      type: uuid
+      generator: { strategy: NONE }
+  fields:
+    description:
+      type: text
