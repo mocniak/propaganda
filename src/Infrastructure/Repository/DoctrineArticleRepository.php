@@ -1,4 +1,5 @@
 <?php
+
 namespace Propaganda\Infrastructure\Repository;
 
 use Doctrine\ORM\EntityManager;
@@ -25,6 +26,8 @@ class DoctrineArticleRepository implements ArticleRepositoryInterface
 
     public function get(UuidInterface $id): Article
     {
-        return $this->repository->find($id);
+        $article = $this->repository->find($id);
+        if (null === $article) throw new \Exception("Article not found for id " . $id->toString());
+        return $article;
     }
 }
