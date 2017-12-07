@@ -10,7 +10,7 @@ create_article:
   path: /admin/create-article
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createArticleAction }
 
-edit_article:
+get_article_data:
 #  methods: [GET]
   path: /admin/get-article-data/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::getArticleDataAction }
@@ -20,7 +20,7 @@ submit_edit_article:
   path: /admin/submit-edit-article/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::submitEditArticleAction }
 
-edit_article_page_action:
+edit_article:
   methods: [GET]
   path: /admin/edit-article/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editArticlePageAction }

@@ -24,7 +24,7 @@ class ArticleService
 
     public function addArticle(NewArticleRequest $dto): NewArticleResponse
     {
-        $article = new Article($dto->title, $dto->content);
+        $article = new Article($dto->title, []);
         $this->articleRepository->save($article);
         return new NewArticleResponse(true, $article->getId());
     }

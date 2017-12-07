@@ -34,12 +34,8 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $newArticleRequest->content = [
-                new Text('some random text'),
-                new Image(Uuid::uuid4())
-            ];
             $newArticleResponse = $articleService->addArticle($newArticleRequest);
-            return new Response(var_dump($newArticleResponse));
+            return $this->redirectToRoute('edit_article', ['id' => $newArticleResponse->id]);
         }
         return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);
     }
