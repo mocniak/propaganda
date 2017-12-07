@@ -10,4 +10,4 @@ Propaganda\Domain\Entity\Article:
       type: string
       length: 120
     content:
-      type: content
+      type: contentType
