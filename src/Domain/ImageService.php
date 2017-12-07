@@ -34,4 +34,9 @@ class ImageService
         $this->repository->save($image);
         return new NewImageResponse(true, $image->getId());
     }
+
+    public function getImageFile($imageId): ImageFile
+    {
+        return $this->storage->loadImageFile($imageId);
+    }
 }

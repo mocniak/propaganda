@@ -28,3 +28,7 @@ edit_article_page_action:
 create_image:
   path: /admin/create-image
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createImageAction }
+
+image_content:
+  path: /admin/image-content/{id}
+  defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::ImageContentAction }
