@@ -6,8 +6,8 @@
     {% for element in article.content %}
         {% if element.type == 'text' %}
             <p>{{ element.value }}</p>
-        {% elseif element.type == 'youtubeVideo' %}
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ element.videoId }}" frameborder="0" allowfullscreen></iframe>
+        {% elseif element.type == 'video' %}
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ element.value }}" frameborder="0" allowfullscreen></iframe>
         {% elseif element.type == 'image' %}
             <p><img src="{{ path('image_content', {'id': element.value}) }}"/></p>
         {% endif %}
