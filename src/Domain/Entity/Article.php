@@ -1,4 +1,5 @@
 <?php
+
 namespace Propaganda\Domain\Entity;
 
 use Ramsey\Uuid\Uuid;
@@ -11,6 +12,11 @@ class Article
      * @var string
      */
     private $title;
+
+    /**
+     * @var UuidInterface
+     */
+    private $coverImageId;
     /**
      * @var array
      */
@@ -46,5 +52,15 @@ class Article
     public function setContent(array $content)
     {
         $this->content = $content;
+    }
+
+    public function getCoverImageId(): ?UuidInterface
+    {
+        return $this->coverImageId;
+    }
+
+    public function setCoverImageId(UuidInterface $coverImageId): void
+    {
+        $this->coverImageId = $coverImageId;
     }
 }

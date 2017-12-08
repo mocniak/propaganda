@@ -9,5 +9,8 @@ Propaganda\Domain\Entity\Article:
     title:
       type: string
       length: 120
+    coverImageId:
+      type: uuid
+      nullable: true
     content:
       type: contentType

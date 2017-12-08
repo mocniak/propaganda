@@ -39,6 +39,7 @@ class ArticleService
         $article = $this->getArticle($editArticleRequest->articleId);
         $article->setTitle($editArticleRequest->title);
         $article->setContent($editArticleRequest->content);
+        $article->setCoverImageId($editArticleRequest->coverImageId);
         $this->articleRepository->save($article);
         return new EditArticleResponse(true, $article->getId());
     }
