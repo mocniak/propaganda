@@ -4,6 +4,7 @@ namespace Propaganda\Infrastructure\Controller;
 
 use Propaganda\Domain\ArticleService;
 use Propaganda\Domain\ImageService;
+use Propaganda\Domain\Repository\ArticleRepositoryInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,9 +14,13 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
+        /** @var ArticleRepositoryInterface $articleRepository */
+        $articleRepository = $this->container->get('propaganda.article_repository');
+
+        $articles = $articleRepository->getNewest(10);
+
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')) . DIRECTORY_SEPARATOR,
+            'articles' => $articles
         ]);
     }
 

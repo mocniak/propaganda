@@ -9,4 +9,6 @@ interface ArticleRepositoryInterface
     public function save(Article $article): void;
 
     public function get(UuidInterface $id): Article;
+
+    public function getNewest(int $int): array;
 }

@@ -30,4 +30,9 @@ class DoctrineArticleRepository implements ArticleRepositoryInterface
         if (null === $article) throw new \Exception("Article not found for id " . $id->toString());
         return $article;
     }
+
+    public function getNewest(int $int): array
+    {
+        return $this->repository->findAll();
+    }
 }

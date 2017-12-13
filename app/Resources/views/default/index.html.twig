@@ -2,49 +2,35 @@
 
 {% block body %}
     <div id="top-news" style="height: 400px">
-        <div class="col-lg-7" style="background-color: rebeccapurple;height: 400px;"></div>
-        <div class="col-lg-5" style="background-color: orange;height: 200px;"></div>
-        <div class="col-lg-3" style="background-color: darkred;height: 200px;"></div>
-        <div class="col-lg-2" style="background-color: navy;height: 200px;"></div>
+        {% for article in articles %}
+            <div class="item-{{ loop.index }}" style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}')">
+                <div class="header">
+                <a href="#">{{ article.title }}</a>
+                    <div class="description"><span class="date">12 stycznia</span><span class="author">Gal Anonim</span> </div>
+                </div>
+
+            </div>
+        {% endfor %}
     </div>
     <div class="col-lg-8">
         <h2>Wiadomości</h2>
+        {% for article in articles %}
         <div class="news-item col-lg-6" style="margin: 15px 0">
-            <div class="news-item-image" style="height: 200px; background-color: #2A2A2A"></div>
+            <div class="news-item-image" style="height: 200px; background-size: cover; background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}'); background-position: center;"></div>
             <div class="news-item-content">
-                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+                <h3>{{ article.title }}</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     aliquip ex ea commodo consequat.</p>
             </div>
         </div>
+        {%  else %}
         <div class="news-item col-lg-6" style="margin: 15px 0">
-            <div class="news-item-image" style="height: 200px; background-color: #2A2A2A"></div>
             <div class="news-item-content">
-                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
+                <h3>Brak artykułów</h3>
             </div>
         </div>
-        <div class="news-item col-lg-6" style="margin: 15px 0">
-            <div class="news-item-image" style="height: 200px; background-color: #2A2A2A"></div>
-            <div class="news-item-content">
-                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-            </div>
-        </div>
-        <div class="news-item col-lg-6" style="margin: 15px 0">
-            <div class="news-item-image" style="height: 200px; background-color: #2A2A2A"></div>
-            <div class="news-item-content">
-                <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
-            </div>
-        </div>
+        {% endfor %}
     </div>
     <div class="col-lg-4">
         <h2>Wydarzenia</h2>
