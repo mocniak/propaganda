@@ -92,6 +92,8 @@ footer .links a {
         display: block;
         position: absolute;
         bottom: 10px;
+        left: 20px;
+        right: 20px;
         color: white;
     }
 
