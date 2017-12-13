@@ -17,10 +17,12 @@ class DefaultController extends Controller
         /** @var ArticleRepositoryInterface $articleRepository */
         $articleRepository = $this->container->get('propaganda.article_repository');
 
+        $featuredArticles = $articleRepository->getNewest(5);
         $articles = $articleRepository->getNewest(10);
 
         return $this->render('default/index.html.twig', [
-            'articles' => $articles
+            'articles' => $articles,
+            'featuredArticles' => $featuredArticles
         ]);
     }
 
