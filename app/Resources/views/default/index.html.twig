@@ -6,7 +6,7 @@
             <div class="item-{{ loop.index }}" style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}')">
                 <div class="header">
                 <a href="#">{{ article.title }}</a>
-                    <div class="description"><span class="date">12 stycznia</span><span class="author">Gal Anonim</span> </div>
+                    <div class="description"><span class="date">{{ article.createdAt.format('Y-m-d')}}</span><span class="author">Gal Anonim</span> </div>
                 </div>
 
             </div>

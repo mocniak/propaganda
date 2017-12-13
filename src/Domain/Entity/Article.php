@@ -21,12 +21,17 @@ class Article
      * @var array
      */
     private $content;
+    /**
+     * @var \DateTimeImmutable
+     */
+    private $createdAt;
 
     public function __construct(string $title, array $content)
     {
         $this->id = Uuid::uuid4();
         $this->title = $title;
         $this->content = $content;
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getTitle(): string
@@ -62,5 +67,10 @@ class Article
     public function setCoverImageId(UuidInterface $coverImageId): void
     {
         $this->coverImageId = $coverImageId;
+    }
+
+    public function getCreatedAt(): \DateTimeImmutable
+    {
+        return $this->createdAt;
     }
 }

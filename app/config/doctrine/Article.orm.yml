@@ -14,3 +14,5 @@ Propaganda\Domain\Entity\Article:
       nullable: true
     content:
       type: contentType
+    createdAt:
+      type: datetime_immutable
