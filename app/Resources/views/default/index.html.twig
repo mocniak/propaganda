@@ -2,11 +2,14 @@
 
 {% block body %}
     <div id="top-news" style="height: 400px">
-        {% for article in articles %}
+        {% for article in featuredArticles %}
             <div class="item-{{ loop.index }}" style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}')">
                 <div class="header">
-                <a href="#">{{ article.title }}</a>
-                    <div class="description"><span class="date">{{ article.createdAt.format('Y-m-d')}}</span><span class="author">Gal Anonim</span> </div>
+                <a href="{{ path('show_article', {'id': article.id}) }}">{{ article.title }}</a>
+                    <div class="description">
+                        <span class="date">{{ article.createdAt.format('Y-m-d') }}</span>
+                        <span class="author">Gal Anonim</span>
+                    </div>
                 </div>
 
             </div>
@@ -15,10 +18,10 @@
     <div class="col-lg-8">
         <h2>Wiadomości</h2>
         {% for article in articles %}
-        <div class="news-item col-lg-6" style="margin: 15px 0">
+        <div class="news-item col-lg-6 clearfix" style="margin: 15px 0">
             <div class="news-item-image" style="height: 200px; background-size: cover; background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}'); background-position: center;"></div>
             <div class="news-item-content">
-                <h3>{{ article.title }}</h3>
+                <h3><a href="{{ path('show_article', {'id': article.id}) }}"> {{ article.title }}</a></h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                     aliquip ex ea commodo consequat.</p>

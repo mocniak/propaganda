@@ -105,4 +105,7 @@ footer .links a {
     #top-news .author {
         margin-left: 30px;
     }
+    .news-item {
+        min-height: 400px;
+    }
 }
