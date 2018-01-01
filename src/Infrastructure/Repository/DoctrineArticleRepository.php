@@ -33,6 +33,6 @@ class DoctrineArticleRepository implements ArticleRepositoryInterface
 
     public function getNewest(int $int): array
     {
-        return $this->repository->findAll();
+        return $this->repository->findBy([],['createdAt' => 'DESC'], $int);
     }
 }

@@ -17,3 +17,4 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     images_directory: '%kernel.project_dir%/web/images'
+    featured_directory: '%kernel.project_dir%/web/featured'

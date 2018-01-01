@@ -26,23 +26,28 @@ services:
       class: Propaganda\Domain\ArticleService
       arguments:
         - '@propaganda.article_repository'
+    propaganda.featured_articles:
+      class: Propaganda\Domain\FeaturedArticlesService
+      arguments:
+        - '@propaganda.article_repository'
     propaganda.article_repository:
       class: Propaganda\Infrastructure\Repository\DoctrineArticleRepository
       arguments:
         - "@doctrine.orm.default_entity_manager"
-
     propaganda.image:
       class: Propaganda\Domain\ImageService
       arguments:
               - '@propaganda.image_repository'
               - '@propaganda.image_storage'
-
     propaganda.image_repository:
           class: Propaganda\Infrastructure\Repository\DoctrineImageRepository
           arguments:
             - "@doctrine.orm.default_entity_manager"
-
     propaganda.image_storage:
           class: Propaganda\Infrastructure\Storage\FileImageStorage
           arguments:
             - '%images_directory%'
+    propaganda.featured_articles_repository:
+          class: Propaganda\Infrastructure\Repository\FileFeaturedArticlesRepository
+          arguments:
+            - '%featured_directory%'
