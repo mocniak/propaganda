@@ -1,0 +1,15 @@
+Propaganda\Domain\Entity\Event:
+  type: entity
+  table: events
+  id:
+    id:
+      type: uuid
+      generator: { strategy: NONE }
+  fields:
+    date:
+      type: datetime_immutable
+    title:
+      type: string
+      length: 120
+    description:
+      type: text

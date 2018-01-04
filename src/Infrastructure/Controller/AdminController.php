@@ -4,15 +4,20 @@ namespace Propaganda\Infrastructure\Controller;
 
 use Propaganda\Domain\ArticleService;
 use Propaganda\Domain\Dto\EditArticleRequest;
+use Propaganda\Domain\Dto\EditEventRequest;
 use Propaganda\Domain\Dto\NewArticleRequest;
+use Propaganda\Domain\Dto\NewEventRequest;
 use Propaganda\Domain\Dto\NewImageRequest;
 use Propaganda\Domain\Entity\Article\ContentInterface;
 use Propaganda\Domain\Entity\Article\Image;
 use Propaganda\Domain\Entity\Article\Text;
 use Propaganda\Domain\Entity\Article\YoutubeVideo;
+use Propaganda\Domain\EventService;
 use Propaganda\Domain\ImageService;
 use Propaganda\Infrastructure\FormType\CreateArticleType;
+use Propaganda\Infrastructure\FormType\CreateEventType;
 use Propaganda\Infrastructure\FormType\CreateImageType;
+use Propaganda\Infrastructure\FormType\EditEventType;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -99,6 +104,44 @@ class AdminController extends Controller
         return $this->render('admin/editArticle.html.twig', ['articleId' => $id]);
     }
 
+    public function createEventAction(Request $request)
+    {
+        /** @var EventService $eventService */
+        $eventService = $this->container->get('propaganda.event');
+        $newEventRequest = new NewEventRequest();
+
+        $form = $this->createForm(CreateEventType::class, $newEventRequest);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $newEventResponse = $eventService->addEvent($newEventRequest);
+            return $this->redirectToRoute('edit_event', ['id' => $newEventResponse->id]);
+        }
+
+        return $this->render('admin/createEvent.html.twig', ['form' => $form->createView()]);
+    }
+
+    public function editEventAction($id, Request $request)
+    {
+        /** @var EventService $eventService */
+        $eventService = $this->container->get('propaganda.event');
+
+        $event = $eventService->getEvent(Uuid::fromString($id));
+
+        $editEventRequest = EditEventRequest::fromEvent($event);
+
+        $form = $this->createForm(EditEventType::class, $editEventRequest);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $editEventResponse = $eventService->editEvent($editEventRequest);
+            return $this->redirectToRoute('edit_event', ['id' => $event->getId()->toString()]);
+        }
+
+        return $this->render('admin/editEvent.html.twig', ['form' => $form->createView()]);
+    }
 
     public function createImageAction(Request $request)
     {

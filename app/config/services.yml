@@ -4,50 +4,58 @@ parameters:
     #parameter_name: value
 
 services:
-    # default configuration for services in *this* file
-    _defaults:
-        # automatically injects dependencies in your services
-        autowire: true
-        # automatically registers your services as commands, event subscribers, etc.
-        autoconfigure: true
-        # this means you cannot fetch services directly from the container via $container->get()
-        # if you need to do this, you can override this setting on individual services
-        public: true
+  # default configuration for services in *this* file
+  _defaults:
+      # automatically injects dependencies in your services
+      autowire: true
+      # automatically registers your services as commands, event subscribers, etc.
+      autoconfigure: true
+      # this means you cannot fetch services directly from the container via $container->get()
+      # if you need to do this, you can override this setting on individual services
+      public: true
 
-    # controllers are imported separately to make sure they're public
-    # and have a tag that allows actions to type-hint services
-    Propaganda\Infrastructure\Controller\:
-        resource: '../../src/Infrastructure/Controller'
-        public: true
-        tags: ['controller.service_arguments']
+  # controllers are imported separately to make sure they're public
+  # and have a tag that allows actions to type-hint services
+  Propaganda\Infrastructure\Controller\:
+      resource: '../../src/Infrastructure/Controller'
+      public: true
+      tags: ['controller.service_arguments']
 
-    # add more services, or override services that need manual wiring
-    propaganda.article:
-      class: Propaganda\Domain\ArticleService
-      arguments:
-        - '@propaganda.article_repository'
-    propaganda.featured_articles:
-      class: Propaganda\Domain\FeaturedArticlesService
-      arguments:
-        - '@propaganda.article_repository'
-    propaganda.article_repository:
-      class: Propaganda\Infrastructure\Repository\DoctrineArticleRepository
-      arguments:
-        - "@doctrine.orm.default_entity_manager"
-    propaganda.image:
-      class: Propaganda\Domain\ImageService
-      arguments:
-              - '@propaganda.image_repository'
-              - '@propaganda.image_storage'
-    propaganda.image_repository:
-          class: Propaganda\Infrastructure\Repository\DoctrineImageRepository
-          arguments:
-            - "@doctrine.orm.default_entity_manager"
-    propaganda.image_storage:
-          class: Propaganda\Infrastructure\Storage\FileImageStorage
-          arguments:
-            - '%images_directory%'
-    propaganda.featured_articles_repository:
-          class: Propaganda\Infrastructure\Repository\FileFeaturedArticlesRepository
-          arguments:
-            - '%featured_directory%'
+  # add more services, or override services that need manual wiring
+  propaganda.article:
+    class: Propaganda\Domain\ArticleService
+    arguments:
+      - '@propaganda.article_repository'
+  propaganda.featured_articles:
+    class: Propaganda\Domain\FeaturedArticlesService
+    arguments:
+      - '@propaganda.article_repository'
+  propaganda.article_repository:
+    class: Propaganda\Infrastructure\Repository\DoctrineArticleRepository
+    arguments:
+      - "@doctrine.orm.default_entity_manager"
+  propaganda.image:
+    class: Propaganda\Domain\ImageService
+    arguments:
+      - '@propaganda.image_repository'
+      - '@propaganda.image_storage'
+  propaganda.image_repository:
+    class: Propaganda\Infrastructure\Repository\DoctrineImageRepository
+    arguments:
+      - "@doctrine.orm.default_entity_manager"
+  propaganda.image_storage:
+    class: Propaganda\Infrastructure\Storage\FileImageStorage
+    arguments:
+      - '%images_directory%'
+  propaganda.featured_articles_repository:
+    class: Propaganda\Infrastructure\Repository\FileFeaturedArticlesRepository
+    arguments:
+      - '%featured_directory%'
+  propaganda.event:
+    class: Propaganda\Domain\EventService
+    arguments:
+      - '@propaganda.event_repository'
+  propaganda.event_repository:
+    class: Propaganda\Infrastructure\Repository\DoctrineEventRepository
+    arguments:
+      - "@doctrine.orm.default_entity_manager"

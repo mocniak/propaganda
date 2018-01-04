@@ -32,3 +32,11 @@ create_image:
 image_content:
   path: /admin/image-content/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::ImageContentAction }
+
+create_event:
+  path: /admin/create-event
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createEventAction }
+
+edit_event:
+  path: /admin/edit-event/{id}
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editEventAction }
