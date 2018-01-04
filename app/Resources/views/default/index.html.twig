@@ -37,36 +37,22 @@
     </div>
     <div class="col-lg-4">
         <h2>Wydarzenia</h2>
+        {% for event in events %}
         <div class="event-item clearfix" style="margin: 15px 0">
-            <div class="news-item-image col-lg-4" style="float: left; height: 100px; background-color: #985f0d"></div>
-            <div class="news-item-content col-lg-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <div class="news-item-image" style="float: left; height: 66px; background-color: #985f0d; display: block; width: 100%; margin: "></div>
+            <div class="news-item-content">
+                <p style="font-size: 20px">{{ event.date.format('Y-m-d') }} |
+                <strong>{{ event.title }}</strong></p>
+                {{ event.description }}
             </div>
         </div>
+        {%  else %}
         <div class="event-item clearfix" style="margin: 15px 0">
-            <div class="news-item-image col-lg-4" style="float: left; height: 100px; background-color: #985f0d"></div>
-            <div class="news-item-content col-lg-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            <div class="news-item-content col-lg-8">
+                Brak zbliżających się wydarzeń.
             </div>
         </div>
-        <div class="event-item clearfix" style="margin: 15px 0">
-            <div class="news-item-image col-lg-4" style="float: left; height: 100px; background-color: #985f0d"></div>
-            <div class="news-item-content col-lg-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-        </div>
-        <div class="event-item clearfix" style="margin: 15px 0">
-            <div class="news-item-image col-lg-4" style="float: left; height: 100px; background-color: #985f0d"></div>
-            <div class="news-item-content col-lg-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-        </div>
-        <div class="event-item clearfix" style="margin: 15px 0">
-            <div class="news-item-image col-lg-4" style="float: left; height: 100px; background-color: #985f0d"></div>
-            <div class="news-item-content col-lg-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </div>
-        </div>
+        {% endfor %}
     </div>
     <div class="col-lg-12">
         <h2>Media</h2>

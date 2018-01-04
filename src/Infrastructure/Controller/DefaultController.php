@@ -3,6 +3,7 @@
 namespace Propaganda\Infrastructure\Controller;
 
 use Propaganda\Domain\ArticleService;
+use Propaganda\Domain\EventService;
 use Propaganda\Domain\FeaturedArticlesService;
 use Propaganda\Domain\ImageService;
 use Ramsey\Uuid\Uuid;
@@ -19,9 +20,14 @@ class DefaultController extends Controller
         $featuredArticles = $featuredArticlesService->getFeatured();
         $articles = $featuredArticlesService->getNotFeatured(10);
 
+        /** @var EventService $eventService */
+        $eventService = $this->container->get('propaganda.event');
+        $events = $eventService->getUpcoming(5);
+
         return $this->render('default/index.html.twig', [
             'articles' => $articles,
-            'featuredArticles' => $featuredArticles
+            'featuredArticles' => $featuredArticles,
+            'events' => $events
         ]);
     }
 

@@ -43,4 +43,9 @@ class EventService
         $this->eventRepository->save($event);
         return new EditEventResponse(true);
     }
+
+    public function getUpcoming(int $amount): array
+    {
+        return $this->eventRepository->getUpcoming($amount);
+    }
 }
