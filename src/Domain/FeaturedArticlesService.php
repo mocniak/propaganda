@@ -3,6 +3,7 @@ namespace Propaganda\Domain;
 
 use Propaganda\Domain\Entity\Article;
 use Propaganda\Domain\Entity\FeaturedArticles;
+use Propaganda\Domain\Exception\ArticleNotFoundException;
 use Propaganda\Domain\Repository\ArticleRepositoryInterface;
 use Propaganda\Domain\Repository\FeaturedArticlesRepositoryInterface;
 use Ramsey\Uuid\UuidInterface;
@@ -31,7 +32,11 @@ class FeaturedArticlesService
 
         /** @var UuidInterface $featuredArticleId */
         foreach ($featuredArticlesIds->getAll() as $featuredArticleId) {
-            $featuredArticles[] = $this->articleRepository->get($featuredArticleId);
+            try {
+                $featuredArticles[] = $this->articleRepository->get($featuredArticleId);
+            } catch (ArticleNotFoundException $exception) {
+                continue;
+            }
         }
         return $featuredArticles;
     }

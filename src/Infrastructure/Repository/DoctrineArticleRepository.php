@@ -4,6 +4,7 @@ namespace Propaganda\Infrastructure\Repository;
 
 use Doctrine\ORM\EntityManager;
 use Propaganda\Domain\Entity\Article;
+use Propaganda\Domain\Exception\ArticleNotFoundException;
 use Propaganda\Domain\Repository\ArticleRepositoryInterface;
 use Ramsey\Uuid\UuidInterface;
 
@@ -26,8 +27,9 @@ class DoctrineArticleRepository implements ArticleRepositoryInterface
 
     public function get(UuidInterface $id): Article
     {
+        /** @var Article $article */
         $article = $this->repository->find($id);
-        if (null === $article) throw new \Exception("Article not found for id " . $id->toString());
+        if (null === $article) throw new ArticleNotFoundException("Article not found for id " . $id->toString());
         return $article;
     }
 
