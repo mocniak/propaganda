@@ -34,8 +34,10 @@ class EditEventType extends AbstractType
             ));
         $builder->get('date')
             ->addModelTransformer(new CallbackTransformer(
-                function ($dateTimeImmutableDate) {
-                    return new \DateTime("@{$dateTimeImmutableDate->getTimeStamp()}");
+                function ($dateTimeImmutable) {
+                    $dateTime = new \DateTime(null, $dateTimeImmutable->getTimezone());
+                    $dateTime->setTimestamp($dateTimeImmutable->getTimestamp());
+                    return $dateTime;
                 },
                 function ($dateTimeMutableDate) {
                     return \DateTimeImmutable::createFromMutable($dateTimeMutableDate);
