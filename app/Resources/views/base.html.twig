@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-    <div class="logo"><img style="width: 100px; margin: 5px" src="{{ asset('static/img/chain_min.svg.png') }}"></div>
+    <div class="logo"><a href="{{ path('homepage') }}"><img style="width: 100px; margin: 5px" src="{{ asset('static/img/chain_min.svg.png') }}"></a></div>
     <div class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -24,19 +24,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a id="pimcore-navigation-renderer-menu-4" class=" main"
-                           href="/en/introduction">Introduction</a>
-                    </li>
-                    <li class="dropdown">
-                        <a id="pimcore-navigation-renderer-menu-3" class="main dropdown-toggle"
-                           href="/en/basic-examples">Basic Examples</a>
-                    </li>
-                    <li class="dropdown">
-                        <a id="pimcore-navigation-renderer-menu-5" class="main dropdown-toggle"
-                           href="/en/advanced-examples">Advanced Examples</a>
+                        <a href="{{ path('homepage') }}">Strona główna</a>
                     </li>
                     <li>
-                        <a id="pimcore-navigation-renderer-menu-6" class=" main" href="/en/experiments">Experiments</a>
+                        <a href="{{ path('homepage') }}">Wydarzenia</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('homepage') }}">Poradnik</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('homepage') }}">Infrastruktura</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('homepage') }}">Społeczność</a>
                     </li>
                 </ul>
             </div>

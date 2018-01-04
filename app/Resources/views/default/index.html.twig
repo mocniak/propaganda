@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="top-news" style="height: 400px">
+    <div id="top-news" style="height: 410px">
         {% for article in featuredArticles %}
-            <div class="item-{{ loop.index }}" style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}')">
+            <div class="item-{{ loop.index }}"
+                 style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}')">
                 <div class="header">
-                <a href="{{ path('show_article', {'id': article.id}) }}">{{ article.title }}</a>
+                    <a href="{{ path('show_article', {'id': article.id}) }}">{{ article.title }}</a>
                     <div class="description">
                         <span class="date">{{ article.createdAt.format('Y-m-d') }}</span>
                         <span class="author">Gal Anonim</span>
@@ -15,43 +16,48 @@
             </div>
         {% endfor %}
     </div>
-    <div class="col-lg-8">
-        <h2>Wiadomości</h2>
+    <h2 style="font-size: 22px; margin: 15px 0 10px 0; padding: 10px 0 10px 10px; display: block; width: 33%; float: right; color: white; background-color: #222">Wydarzenia</h2>
+    <div class="news-column">
         {% for article in articles %}
-        <div class="news-item col-lg-6 clearfix" style="margin: 15px 0">
-            <div class="news-item-image" style="height: 200px; background-size: cover; background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}'); background-position: center;"></div>
-            <div class="news-item-content">
-                <h3><a href="{{ path('show_article', {'id': article.id}) }}"> {{ article.title }}</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.</p>
+            <div class="news-item">
+                {% if article.coverImageId is not null %}
+                    <div class="news-item-image"
+                         style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}');"></div>
+                {% endif %}
+                <div class="news-item-content">
+                    <h3><a href="{{ path('show_article', {'id': article.id}) }}"> {{ article.title }}</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut
+                        aliquip ex ea commodo consequat.</p>
+                </div>
             </div>
-        </div>
-        {%  else %}
-        <div class="news-item col-lg-6" style="margin: 15px 0">
-            <div class="news-item-content">
-                <h3>Brak artykułów</h3>
+        {% else %}
+            <div class="news-item" style="margin: 15px 0">
+                <div class="news-item-content">
+                    <h3>Brak artykułów</h3>
+                </div>
             </div>
-        </div>
         {% endfor %}
     </div>
-    <div class="col-lg-4">
-        <h2>Wydarzenia</h2>
+    <div class="events-column">
         {% for event in events %}
-        <div class="event-item clearfix" style="margin: 15px 0">
-            <div class="news-item-image" style="float: left; height: 66px; background-color: #985f0d; display: block; width: 100%; margin: "></div>
-            <div class="news-item-content">
-                <p style="font-size: 20px">{{ event.date.format('Y-m-d') }} |
-                <strong>{{ event.title }}</strong></p>
-                {{ event.description }}
+            <div class="event-item clearfix" style="margin: 0">
+                {#<div class="news-item-image" style="float: left; height: 66px; background-color: #985f0d; display: block; width: 100%;"></div>#}
+                <div class="news-item-content">
+                    <p style="font-size: 20px">{{ event.date.format('Y-m-d') }} |
+                        <strong>{{ event.title }}</strong></p>
+                    {{ event.description }}
+                </div>
+                <hr>
             </div>
-        </div>
-        {%  else %}
-        <div class="event-item clearfix" style="margin: 15px 0">
-            <div class="news-item-content col-lg-8">
-                Brak zbliżających się wydarzeń.
+        {% else %}
+            <div class="event-item clearfix" style="margin: 15px 0">
+                <div class="news-item-content col-lg-8">
+                    Brak zbliżających się wydarzeń.
+                </div>
             </div>
-        </div>
         {% endfor %}
     </div>
     <div class="col-lg-12">

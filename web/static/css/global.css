@@ -63,14 +63,20 @@ footer .links a {
     position: relative;
 }
 
+.news-item-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
 @media (min-width: 1200px) {
     #top-news > div {
         height: 195px;
-        width: calc(25% - 10px);
+        width: calc(40% - 10px);
         float: left;
-        padding: 20px;
         margin: 5px;
         color: white;
+        text-shadow: 0 0 4px black;
         background-size: cover;
         background-position: center;
         position: relative;
@@ -78,7 +84,7 @@ footer .links a {
     }
 
     #top-news div.item-1 {
-        width: calc(50% - 10px);
+        width: calc(60% - 10px);
         height: 400px;
     }
 
@@ -89,12 +95,12 @@ footer .links a {
     }
 
     #top-news div.header {
+        padding: 10px 20px;
         display: block;
         position: absolute;
-        bottom: 10px;
-        left: 20px;
-        right: 20px;
+        bottom: 0px;
         color: white;
+        background-color: rgba(0, 0, 0, 0.4);
     }
 
     #top-news a {
@@ -106,6 +112,20 @@ footer .links a {
         margin-left: 30px;
     }
     .news-item {
-        min-height: 400px;
+        height: 400px;
+        float: left;
+    }
+    .news-column {
+        border-top: solid 5px #285e8e;
+        width: calc(66% - 10px);
+        margin: 15px 5px;
+        column-count: 2;
+        float: left;
+        padding: 20px 0 0 0;
+    }
+    .events-column {
+        width: calc(33% - 10px);
+        margin: 5px;
+        float: right;
     }
 }
