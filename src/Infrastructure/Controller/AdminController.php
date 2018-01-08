@@ -14,6 +14,8 @@ use Propaganda\Domain\Entity\Article\Text;
 use Propaganda\Domain\Entity\Article\YoutubeVideo;
 use Propaganda\Domain\EventService;
 use Propaganda\Domain\ImageService;
+use Propaganda\Domain\Repository\ArticleRepositoryInterface;
+use Propaganda\Domain\Repository\EventRepositoryInterface;
 use Propaganda\Infrastructure\FormType\CreateArticleType;
 use Propaganda\Infrastructure\FormType\CreateEventType;
 use Propaganda\Infrastructure\FormType\CreateImageType;
@@ -27,6 +29,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
+    public function dashboardAction()
+    {
+        /** @var ArticleRepositoryInterface $articleRepository */
+        $articleRepository = $this->container->get('propaganda.article_repository');
+        $articles = $articleRepository->getNewest(20);
+        /** @var EventRepositoryInterface $eventRepository */
+        $eventRepository = $this->container->get('propaganda.event_repository');
+        $events = $eventRepository->getUpcoming(20);
+        return $this->render('admin/dashboard.html.twig', ['articles' => $articles, 'events' => $events]);
+    }
+
     public function createArticleAction(Request $request)
     {
         /** @var ArticleService $articleService */

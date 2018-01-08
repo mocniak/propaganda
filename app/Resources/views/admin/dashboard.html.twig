@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h2>Artykuły</h2>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <a href="{{ path('show_article', {'id': article.id}) }}">{{ article.title }}</a> |
+                <a href="{{ path('edit_article', {'id': article.id}) }}">[edytuj]</a>
+            </li>
+        {% else %}
+            <li>Brak artykułów.</li>
+        {% endfor %}
+    </ul>
+    <h2>Wydarzenia</h2>
+    <ul>
+        {% for event in events %}
+            <li>
+                {{ event.date.format('Y-m-d') }} | {{ event.title }} |
+                <a href="{{ path('edit_event', {'id': event.id}) }}">[edytuj]</a>
+            </li>
+        {% else %}
+            <li>Brak wydarzeń.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
+
