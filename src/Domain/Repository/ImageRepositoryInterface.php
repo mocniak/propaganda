@@ -10,4 +10,6 @@ interface ImageRepositoryInterface
     public function save(Image $article): void;
 
     public function get(UuidInterface $id): Image;
+
+    public function getNewest($int): array;
 }

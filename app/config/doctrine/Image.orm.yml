@@ -8,3 +8,6 @@ Propaganda\Domain\Entity\Image:
   fields:
     description:
       type: text
+    createdAt:
+      type: datetime_immutable
+      nullable: true

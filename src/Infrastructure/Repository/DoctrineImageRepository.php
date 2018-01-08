@@ -26,8 +26,14 @@ class DoctrineImageRepository implements ImageRepositoryInterface
 
     public function get(UuidInterface $id): Image
     {
+        /** @var Image $image */
         $image = $this->repository->find($id);
         if (null === $image) throw new \Exception("Image not found for id " . $id->toString());
         return $image;
+    }
+
+    public function getNewest($int): array
+    {
+        return $this->repository->findBy([], ['createdAt' => 'DESC'], $int);
     }
 }

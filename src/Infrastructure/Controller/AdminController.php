@@ -16,6 +16,7 @@ use Propaganda\Domain\EventService;
 use Propaganda\Domain\ImageService;
 use Propaganda\Domain\Repository\ArticleRepositoryInterface;
 use Propaganda\Domain\Repository\EventRepositoryInterface;
+use Propaganda\Domain\Repository\ImageRepositoryInterface;
 use Propaganda\Infrastructure\FormType\CreateArticleType;
 use Propaganda\Infrastructure\FormType\CreateEventType;
 use Propaganda\Infrastructure\FormType\CreateImageType;
@@ -37,7 +38,15 @@ class AdminController extends Controller
         /** @var EventRepositoryInterface $eventRepository */
         $eventRepository = $this->container->get('propaganda.event_repository');
         $events = $eventRepository->getUpcoming(20);
-        return $this->render('admin/dashboard.html.twig', ['articles' => $articles, 'events' => $events]);
+        /** @var ImageRepositoryInterface $imageRepository */
+        $imageRepository = $this->container->get('propaganda.image_repository');
+        $images = $imageRepository->getNewest(20);
+
+        return $this->render('admin/dashboard.html.twig', [
+            'articles' => $articles,
+            'events' => $events,
+            'images' => $images
+        ]);
     }
 
     public function createArticleAction(Request $request)
@@ -46,15 +55,16 @@ class AdminController extends Controller
         $articleService = $this->container->get('propaganda.article');
         $newArticleRequest = new NewArticleRequest();
 
-
         $form = $this->createForm(CreateArticleType::class, $newArticleRequest);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $newArticleResponse = $articleService->addArticle($newArticleRequest);
+
             return $this->redirectToRoute('edit_article', ['id' => $newArticleResponse->id]);
         }
+
         return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);
     }
 

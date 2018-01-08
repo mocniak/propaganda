@@ -24,5 +24,14 @@
         {% endfor %}
     </ul>
 
+    <h2>Grafiki i zdjęcia</h2>
+    <ul>
+        {% for image in images %}
+            <li>
+                <a href="{{ path('image_content', {'id': image.id}) }}">{{ image.description }}</a> | {{ image.id }}
+            </li>
+        {% else %}
+            <li>Brak obrazów.</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
-
