@@ -42,7 +42,7 @@ footer .links a {
     color: white;
     font-weight: bold;
     border-bottom: 7px solid #285e8e;
-    margin: 0 5px 5px 5px;
+    margin: 0 0 5px 0;
 }
 
 .navbar a {
@@ -67,6 +67,43 @@ footer .links a {
     height: 200px;
     background-size: cover;
     background-position: center;
+}
+
+#root label {
+    font-weight: bold;
+    width: 100%;
+}
+
+#root input, #root textarea {
+    font-weight: normal;
+    width: 100%;
+}
+#root textarea {
+    font-weight: normal;
+    height: 300px;
+    font-family: monospace;
+}
+#root hr {
+    width: 100%;
+    margin: 10px 0;
+}
+.add-content-widget select {
+    float: left;
+    border: 1px solid #ccc;
+    height: 34px;
+    width: 200px;
+    background: transparent;
+    padding: 5px;
+    margin: 0  0 10px 0;
+}
+.add-content-widget .add-content-button {
+    border-radius: 15px;
+    color: #78ab64;
+    font-weight: bold;
+    border: 2px solid #78ab64;
+    padding: 5px 16px;
+    float: left;
+    margin:  0  10px 10px 10px;
 }
 
 @media (min-width: 1200px) {
@@ -108,13 +145,16 @@ footer .links a {
         font-weight: bold;
         color: white;
     }
+
     #top-news .author {
         margin-left: 30px;
     }
+
     .news-item {
         height: 400px;
         float: left;
     }
+
     .news-column {
         border-top: solid 5px #285e8e;
         width: calc(66% - 10px);
@@ -123,9 +163,14 @@ footer .links a {
         float: left;
         padding: 20px 0 0 0;
     }
+
     .events-column {
         width: calc(33% - 10px);
         margin: 5px;
         float: right;
+    }
+
+    #root {
+        width: 66%;
     }
 }
