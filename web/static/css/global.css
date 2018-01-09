@@ -87,6 +87,20 @@ footer .links a {
     width: 100%;
     margin: 10px 0;
 }
+#root input[type="submit"] {
+    font-weight: bold;
+    border: 2px solid #78ab64;
+    border-radius: 15px;
+    background-color: #78ab64;
+    padding: 5px 16px;
+    color: white;
+    margin: 10px 0;
+}
+#root input[type="submit"]:hover {
+    background-color: white;
+    color: #78ab64;
+}
+
 .add-content-widget select {
     float: left;
     border: 1px solid #ccc;
@@ -104,6 +118,11 @@ footer .links a {
     padding: 5px 16px;
     float: left;
     margin:  0  10px 10px 10px;
+}
+.add-content-widget .add-content-button:hover {
+    background-color: #78ab64;
+    color: white;
+    cursor: pointer;
 }
 
 @media (min-width: 1200px) {
