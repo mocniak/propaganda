@@ -61,6 +61,7 @@ footer .links a {
 
 #top-news {
     position: relative;
+    margin: 0 -5px;
 }
 
 .news-item-image {
@@ -176,8 +177,8 @@ footer .links a {
 
     .news-column {
         border-top: solid 5px #285e8e;
-        width: calc(66% - 10px);
-        margin: 15px 5px;
+        width: calc(66% - 5px);
+        margin: 15px 0;
         column-count: 2;
         float: left;
         padding: 20px 0 0 0;
