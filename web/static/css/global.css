@@ -79,15 +79,18 @@ footer .links a {
     font-weight: normal;
     width: 100%;
 }
+
 #root textarea {
     font-weight: normal;
     height: 300px;
     font-family: monospace;
 }
+
 #root hr {
     width: 100%;
     margin: 10px 0;
 }
+
 #root input[type="submit"] {
     font-weight: bold;
     border: 2px solid #78ab64;
@@ -97,6 +100,7 @@ footer .links a {
     color: white;
     margin: 10px 0;
 }
+
 #root input[type="submit"]:hover {
     background-color: white;
     color: #78ab64;
@@ -109,8 +113,9 @@ footer .links a {
     width: 200px;
     background: transparent;
     padding: 5px;
-    margin: 0  0 10px 0;
+    margin: 0 0 10px 0;
 }
+
 .add-content-widget .add-content-button {
     border-radius: 15px;
     color: #78ab64;
@@ -118,17 +123,30 @@ footer .links a {
     border: 2px solid #78ab64;
     padding: 5px 16px;
     float: left;
-    margin:  0  10px 10px 10px;
+    margin: 0 10px 10px 10px;
 }
+
 .add-content-widget .add-content-button:hover {
     background-color: #78ab64;
     color: white;
     cursor: pointer;
 }
+
 .homepage-video {
     float: left;
     clear: both;
     width: 100%;
+}
+
+.playlist-element {
+    float: right;
+    width: 34%;
+    height: 95px;
+    margin: 0 0 10px 0;
+    background-color: #222222;
+    font-weight: bold;
+    padding: 10px;
+    color: white;
 }
 
 h2.banner {
@@ -139,6 +157,7 @@ h2.banner {
     color: white;
     background-color: #222
 }
+
 @media (min-width: 1200px) {
     #top-news > div {
         height: 195px;
