@@ -5,6 +5,7 @@ namespace Propaganda\Infrastructure\Controller;
 use Propaganda\Domain\ArticleService;
 use Propaganda\Domain\Dto\EditArticleRequest;
 use Propaganda\Domain\Dto\EditEventRequest;
+use Propaganda\Domain\Dto\EditFeaturedArticlesRequest;
 use Propaganda\Domain\Dto\NewArticleRequest;
 use Propaganda\Domain\Dto\NewEventRequest;
 use Propaganda\Domain\Dto\NewImageRequest;
@@ -13,6 +14,7 @@ use Propaganda\Domain\Entity\Article\Image;
 use Propaganda\Domain\Entity\Article\Text;
 use Propaganda\Domain\Entity\Article\YoutubeVideo;
 use Propaganda\Domain\EventService;
+use Propaganda\Domain\FeaturedArticlesService;
 use Propaganda\Domain\ImageService;
 use Propaganda\Domain\Repository\ArticleRepositoryInterface;
 use Propaganda\Domain\Repository\EventRepositoryInterface;
@@ -21,6 +23,7 @@ use Propaganda\Infrastructure\FormType\CreateArticleType;
 use Propaganda\Infrastructure\FormType\CreateEventType;
 use Propaganda\Infrastructure\FormType\CreateImageType;
 use Propaganda\Infrastructure\FormType\EditEventType;
+use Propaganda\Infrastructure\FormType\EditFeaturedArticlesType;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -186,5 +189,21 @@ class AdminController extends Controller
             return new Response(var_dump($response));
         }
         return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);
+    }
+
+    public function editFeaturedArticlesAction(Request $request)
+    {
+        /** @var FeaturedArticlesService $featuredArticlesService */
+        $featuredArticlesService = $this->container->get('propaganda.featured_articles');
+        $featuredArticlesIds = $featuredArticlesService->getFeaturedArticlesIds();
+        $editFeaturedArticlesRequest = new EditFeaturedArticlesRequest($featuredArticlesIds->getAll());
+        $form = $this->createForm(EditFeaturedArticlesType::class, $editFeaturedArticlesRequest);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $editFeaturedArticlesResponse = $featuredArticlesService->editFeaturedArticles($editFeaturedArticlesRequest);
+        }
+        return $this->render('admin/editFeatured.html.twig', ['form' => $form->createView()]);
     }
 }

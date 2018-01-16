@@ -44,3 +44,7 @@ create_event:
 edit_event:
   path: /admin/edit-event/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editEventAction }
+
+edit_featured_articles:
+  path: /admin/edit-featured-articles
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editFeaturedArticlesAction }

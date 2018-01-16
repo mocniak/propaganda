@@ -9,27 +9,27 @@ class FeaturedArticles
     /** @var int */
     private $amount;
     /** @var array */
-    private $featuredArticles;
+    private $all;
 
     public function __construct(int $amount, array $featuredArticles)
     {
         $this->amount = $amount;
-        foreach ($featuredArticles as $featuredArticleId)
-        {
+        foreach ($featuredArticles as $featuredArticleId) {
             if (!$featuredArticleId instanceof UuidInterface) {
                 throw new \RuntimeException('Invalid Id type.');
             }
         }
-        $this->featuredArticles = $featuredArticles;
+        $this->all = $featuredArticles;
     }
 
     public function getAll(): array
     {
-        return $this->featuredArticles;
+        return $this->all;
     }
 
-    public function setAll(array $featured) {
-        $this->featuredArticles = $featured;
+    public function setAll(array $featured)
+    {
+        $this->all = $featured;
     }
 
     public function getAmount(): int

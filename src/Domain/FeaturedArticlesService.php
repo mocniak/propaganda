@@ -1,6 +1,8 @@
 <?php
+
 namespace Propaganda\Domain;
 
+use Propaganda\Domain\Dto\EditFeaturedArticlesRequest;
 use Propaganda\Domain\Entity\Article;
 use Propaganda\Domain\Entity\FeaturedArticles;
 use Propaganda\Domain\Exception\ArticleNotFoundException;
@@ -52,12 +54,6 @@ class FeaturedArticlesService
         return array_splice($newestArticles, 0, $amount);
     }
 
-//    public function updateFeaturedArticlesIds(UpdateFeaturedArticlesRequest $request)
-//    {
-//        $featuredArticlesIds = new FeaturedArticles(5,$request->featuredArticlesIds);
-//        $this->featuredArticlesRepository->save($featuredArticlesIds);
-//    }
-
     public function getFeaturedArticlesIds(): FeaturedArticles
     {
         $featuredArticlesIds = $this->featuredArticlesRepository->get();
@@ -65,5 +61,11 @@ class FeaturedArticlesService
             return new FeaturedArticles(5, []);
         }
         return $featuredArticlesIds;
+    }
+
+    public function editFeaturedArticles(EditFeaturedArticlesRequest $request)
+    {
+        $featuredArticlesIds = new FeaturedArticles(5, $request->arrayOfArticleIds);
+        $this->featuredArticlesRepository->save($featuredArticlesIds);
     }
 }
