@@ -58,14 +58,19 @@ class FeaturedArticlesService
     {
         $featuredArticlesIds = $this->featuredArticlesRepository->get();
         if (null === $featuredArticlesIds) {
-            return new FeaturedArticles(5, []);
+            return new FeaturedArticles(3, []);
         }
         return $featuredArticlesIds;
     }
 
     public function editFeaturedArticles(EditFeaturedArticlesRequest $request)
     {
-        $featuredArticlesIds = new FeaturedArticles(5, $request->arrayOfArticleIds);
+        $featuredArticles = array_filter($request->arrayOfArticleIds,
+            function ($id) {
+                return $id !== null;
+            }
+        );
+        $featuredArticlesIds = new FeaturedArticles(3, $featuredArticles);
         $this->featuredArticlesRepository->save($featuredArticlesIds);
     }
 }

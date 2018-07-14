@@ -5,6 +5,11 @@ security:
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
+#            memory:
+#                users:
+#                    admin:
+#                        password: $2y$12$YSfQG9JuB.FJsuScLtfNq.ctAKMIXnVEx0naZmGGlGvkdmVPUZhOK
+#                        roles: 'ROLE_ADMIN'
             memory: ~
 
     firewalls:
@@ -14,11 +19,15 @@ security:
             security: false
 
         main:
+#            anonymous: true
+#            http_basic: true
+#            # form_login: true
             anonymous: ~
-            # activate different ways to authenticate
-
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+#
+#    access_control:
+#        - { path: ^/admin, roles: ROLE_ADMIN }
+#        # - { path: ^/profile, roles: ROLE_USER }
+#    encoders:
+#        Symfony\Component\Security\Core\User\User:
+#            algorithm: bcrypt
+#            cost: 12

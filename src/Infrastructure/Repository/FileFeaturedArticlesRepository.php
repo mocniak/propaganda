@@ -39,6 +39,9 @@ class FileFeaturedArticlesRepository implements FeaturedArticlesRepositoryInterf
         $stringIds = explode(',', file_get_contents($this->featuredArticlesFolderPath . '/featuredArticles.txt'));
         $idArray = [];
         foreach ($stringIds as $stringId) {
+            if ($stringId === '') {
+                continue;
+            }
             $idArray[] = Uuid::fromString($stringId);
         }
 

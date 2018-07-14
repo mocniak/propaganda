@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h2>Strona główna</h2>
+    <p><a href="{{ path('edit_featured_articles') }}">Artykuły wyróżnione</a></p>
+
     <h2>Artykuły</h2>
+    <p><a href="{{ path('create_article') }}">+ dodaj</a></p>
     <ul>
         {% for article in articles %}
             <li>
@@ -13,6 +17,7 @@
         {% endfor %}
     </ul>
     <h2>Wydarzenia</h2>
+    <p><a href="{{ path('create_event') }}">+ dodaj</a></p>
     <ul>
         {% for event in events %}
             <li>
@@ -25,6 +30,7 @@
     </ul>
 
     <h2>Grafiki i zdjęcia</h2>
+    <p><a href="{{ path('create_image') }}">+ dodaj</a></p>
     <ul>
         {% for image in images %}
             <li>

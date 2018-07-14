@@ -162,7 +162,7 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $editEventResponse = $eventService->editEvent($editEventRequest);
+            $eventService->editEvent($editEventRequest);
             return $this->redirectToRoute('edit_event', ['id' => $event->getId()->toString()]);
         }
 
@@ -185,8 +185,9 @@ class AdminController extends Controller
 
             /** @var ImageService $imageService */
             $imageService = $this->container->get('propaganda.image');
-            $response = $imageService->addImage($newImageRequest);
-            return new Response(var_dump($response));
+            $imageService->addImage($newImageRequest);
+
+            return $this->redirectToRoute('dashboard');
         }
         return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);
     }
@@ -202,7 +203,7 @@ class AdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $editFeaturedArticlesResponse = $featuredArticlesService->editFeaturedArticles($editFeaturedArticlesRequest);
+            $featuredArticlesService->editFeaturedArticles($editFeaturedArticlesRequest);
         }
         return $this->render('admin/editFeatured.html.twig', ['form' => $form->createView()]);
     }
