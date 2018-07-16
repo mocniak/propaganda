@@ -26,11 +26,13 @@
                 {% endif %}
                 <div class="news-item-content">
                     <h3><a href="{{ path('show_article', {'id': article.id}) }}"> {{ article.title }}</a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore
-                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                        ut
-                        aliquip ex ea commodo consequat.</p>
+                    {% set break = false %}
+                    {% for element in article.content if not break %}
+                        {% if element.type == 'text' %}
+                            <p>{{ element.value|length > 350 ? element.value|slice(0, 350) ~ '...' : element.value }}</p>
+                            {% set break = true %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         {% else %}

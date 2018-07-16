@@ -59,3 +59,11 @@ services:
     class: Propaganda\Infrastructure\Repository\DoctrineEventRepository
     arguments:
       - "@doctrine.orm.default_entity_manager"
+  markdown.engine:
+    class: Aptoma\Twig\Extension\MarkdownEngine\MichelfMarkdownEngine
+
+  twig.markdown:
+    class: Aptoma\Twig\Extension\MarkdownExtension
+    arguments: ['@markdown.engine']
+    tags:
+      - { name: twig.extension }

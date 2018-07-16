@@ -3,8 +3,17 @@
 /* Padding below the footer and lighter body text */
 
 body {
-    padding-bottom: 0px;
+    font-size: 16px;
+    padding-bottom: 0;
     color: #5a5a5a;
+}
+
+a {
+    color: #337ab7;
+}
+
+h3 a {
+    font-weight: bold;
 }
 
 /* CUSTOMIZE THE NAVBAR
@@ -38,10 +47,10 @@ footer .links a {
 }
 
 .navbar {
-    background-color: #222222;
+    background-color: #333333;
     color: white;
     font-weight: bold;
-    border-bottom: 7px solid #285e8e;
+    border-bottom: 7px solid #4a90e2;
     margin: 0 0 5px 0;
 }
 
@@ -50,15 +59,19 @@ footer .links a {
 }
 
 .navbar ul > li > a:hover {
-    background-color: #285e8e;
+    background-color: #4a90e2;
 }
 
 #article p {
     margin: 25px 0;
-    font-size: 14px;
-    line-height: 23px;
+    font-size: 16px;
+    line-height: 25px;
 }
 
+
+#article h2 {
+    font-size: 25px;
+}
 #top-news {
     position: relative;
     margin: 0 -5px;
@@ -93,9 +106,8 @@ footer .links a {
 
 #root input[type="submit"] {
     font-weight: bold;
-    border: 2px solid #78ab64;
-    border-radius: 15px;
-    background-color: #78ab64;
+    border: 2px solid #4a90e2;
+    background-color: #4a90e2;
     padding: 5px 16px;
     color: white;
     margin: 10px 0;
@@ -103,7 +115,7 @@ footer .links a {
 
 #root input[type="submit"]:hover {
     background-color: white;
-    color: #78ab64;
+    color: #4a90e2;
 }
 
 .add-content-widget select {
@@ -117,17 +129,16 @@ footer .links a {
 }
 
 .add-content-widget .add-content-button {
-    border-radius: 15px;
-    color: #78ab64;
+    color: #4a90e2;
     font-weight: bold;
-    border: 2px solid #78ab64;
+    border: 2px solid #4a90e2;
     padding: 5px 16px;
     float: left;
     margin: 0 10px 10px 10px;
 }
 
 .add-content-widget .add-content-button:hover {
-    background-color: #78ab64;
+    background-color: #4a90e2;
     color: white;
     cursor: pointer;
 }
@@ -143,7 +154,7 @@ footer .links a {
     width: 34%;
     height: 95px;
     margin: 0 0 10px 0;
-    background-color: #222222;
+    background-color: #333333;
     font-weight: bold;
     padding: 10px;
     color: white;
@@ -155,7 +166,7 @@ h2.banner {
     padding: 10px 0 10px 10px;
     display: block;
     color: white;
-    background-color: #222
+    background-color: #333333;
 }
 
 @media (min-width: 1200px) {
@@ -187,7 +198,7 @@ h2.banner {
         padding: 10px 20px;
         display: block;
         position: absolute;
-        bottom: 0px;
+        bottom: 0;
         color: white;
         background-color: rgba(0, 0, 0, 0.4);
     }
@@ -203,12 +214,12 @@ h2.banner {
     }
 
     .news-item {
-        height: 400px;
+        height: 410px;
         float: left;
     }
 
     .news-column {
-        border-top: solid 5px #285e8e;
+        border-top: solid 5px #4a90e2;
         width: calc(66% - 5px);
         margin: 15px 0;
         column-count: 2;

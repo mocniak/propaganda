@@ -43,6 +43,10 @@ class FeaturedArticlesService
         return $featuredArticles;
     }
 
+    /**
+     * @param int $amount
+     * @return Article[]
+     */
     public function getNotFeatured(int $amount): array
     {
         $featuredArticlesIds = $this->getFeaturedArticlesIds();
