@@ -3,7 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 body {
-    font-size: 16px;
+    font-size: 14px;
     padding-bottom: 0;
     color: #5a5a5a;
 }
@@ -64,14 +64,35 @@ footer .links a {
 
 #article p {
     margin: 25px 0;
+}
+
+#article {
     font-size: 16px;
     line-height: 25px;
 }
 
-
 #article h2 {
     font-size: 25px;
 }
+
+#article th {
+    background-color: #4a90e2;
+    color: white;
+    text-align: center;
+}
+
+#article th, td {
+    padding: 10px;
+}
+
+#article table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#article tr:hover {
+    background-color: #ccc !important;
+}
+
 #top-news {
     position: relative;
     margin: 0 -5px;
