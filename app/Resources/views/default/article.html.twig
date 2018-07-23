@@ -16,7 +16,11 @@
             {% endif %}
         {% endfor %}
     </div>
-    <div class="col-lg-4">
-        Sidebar
+    <div class="col-lg-4" id="sidebar">
+        <h2 class="banner">Najnowsze artykuły</h2>
+        {{ render(controller(
+        'Propaganda\\Infrastructure\\Controller\\DefaultController::recentArticles',
+        { 'limit': 10 }
+        )) }}
     </div>
 {% endblock %}

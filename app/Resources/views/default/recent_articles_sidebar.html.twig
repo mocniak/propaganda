@@ -1,0 +1,10 @@
+<ul>
+    {% for article in articles %}
+        <li>
+            <a href="{{ path('show_article', {'id': article.id}) }}">
+                {{ article.title }}
+                <span class="date">{{ article.createdAt.format('Y-m-d') }}</span>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

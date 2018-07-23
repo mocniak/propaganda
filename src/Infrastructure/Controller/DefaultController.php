@@ -39,6 +39,14 @@ class DefaultController extends Controller
         return $this->render('default/article.html.twig', ['article' => $article]);
     }
 
+    public function recentArticles($limit)
+    {
+        /** @var ArticleService $articleService */
+        $articleService = $this->container->get('propaganda.article');
+        $articles = $articleService->getRecent((int)$limit);
+        return $this->render('default/recent_articles_sidebar.html.twig', ['articles' => $articles]);
+    }
+
     public function imageContentAction($id)
     {
         /** @var ImageService $imageService */

@@ -43,4 +43,10 @@ class ArticleService
         $this->articleRepository->save($article);
         return new EditArticleResponse(true, $article->getId());
     }
+
+    public function getRecent($limit): array
+    {
+        $articles = $this->articleRepository->getNewest($limit);
+        return $articles;
+    }
 }
