@@ -70,6 +70,10 @@ footer .links a {
     font-size: 16px;
     line-height: 25px;
 }
+#article h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
 
 #article h2 {
     font-size: 25px;
@@ -91,6 +95,20 @@ footer .links a {
 
 #article tr:hover {
     background-color: #ccc !important;
+}
+#article-sidebar {
+    line-height: 1.2;
+    padding: 0;
+    margin: 0 10px;
+}
+#article-sidebar li {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+#article-sidebar li a {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 #top-news {
