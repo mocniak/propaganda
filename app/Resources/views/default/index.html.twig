@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <div id="top-news" style="height: 410px">
+    <div id="top-news">
         {% for article in featuredArticles %}
             <div class="item-{{ loop.index }}"
                  style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}')">
@@ -16,7 +16,7 @@
             </div>
         {% endfor %}
     </div>
-    <h2 class="banner" style="width: 33%; float: right">Wydarzenia</h2>
+
     <div class="news-column">
         {% for article in articles %}
             <div class="news-item">
@@ -44,6 +44,7 @@
         {% endfor %}
     </div>
     <div class="events-column">
+        <h2 class="banner">Wydarzenia</h2>
         {% for event in events %}
             <div class="event-item clearfix" style="margin: 0">
                 {#<div class="news-item-image" style="float: left; height: 66px; background-color: #985f0d; display: block; width: 100%;"></div>#}

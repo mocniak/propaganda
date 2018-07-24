@@ -71,7 +71,7 @@ footer .links a {
     line-height: 25px;
 }
 #article h1 {
-    font-size: 40px;
+    font-size: 32px;
     font-weight: bold;
 }
 
@@ -109,11 +109,6 @@ footer .links a {
 #article-sidebar li a {
     font-size: 20px;
     font-weight: bold;
-}
-
-#top-news {
-    position: relative;
-    margin: 0 -5px;
 }
 
 .news-item-image {
@@ -201,14 +196,53 @@ footer .links a {
 
 h2.banner {
     font-size: 22px;
-    margin: 15px 0 10px 0;
+    margin: 10px 0;
     padding: 10px 0 10px 10px;
     display: block;
     color: white;
     background-color: #333333;
 }
 
+#top-news {
+    position: relative;
+}
+
+#top-news > div {
+    height: 195px;
+    width: 100%;
+    margin: 5px 0;
+    color: white;
+    text-shadow: 0 0 4px black;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+#top-news div.header {
+    padding: 10px 20px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+#top-news a {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.news-column {
+    border-top: solid 5px #4a90e2;
+    padding: 20px 0 0 0;
+}
+
 @media (min-width: 1200px) {
+    #article h1 {
+        font-size: 40px;
+    }
+    #top-news {
+        height: 410px;
+    }
     #top-news > div {
         height: 195px;
         width: calc(40% - 10px);
@@ -258,12 +292,10 @@ h2.banner {
     }
 
     .news-column {
-        border-top: solid 5px #4a90e2;
         width: calc(66% - 5px);
         margin: 15px 0;
         column-count: 2;
         float: left;
-        padding: 20px 0 0 0;
     }
 
     .events-column {
