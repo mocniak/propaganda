@@ -1,15 +1,34 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block facebook_metadata %}
+    <meta property="og:url" content="{{ url('show_article', {'id': article.id}) }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ article.title }}"/>
+    <meta property="og:description" content="{% set break = false %}
+{% for element in article.content if not break %}
+{% if element.type == 'text' %}
+{{ element.value|length > 350 ? element.value|slice(0, 350) ~ '...' : element.value }}
+{% set break = true %}
+{% endif %}
+{% endfor %}"/>
+    <meta property="og:image" content="{{ url('image_content', {'id': article.coverImageId}) }}"/>
+{% endblock %}
+
 {% block body %}
     <div id="article" class="col-lg-8">
         <h1>{{ article.title }}</h1>
         {{ article.createdAt.format('Y-m-d') }} Gal Anonim
         <!-- Load Facebook SDK for JavaScript -->
         <div id="fb-root"></div>
-        <script>(function(d, s, id) {
+        <script>(function (d, s, id) {
                 var js, fjs = d.getElementsByTagName(s)[0];
                 if (d.getElementById(id)) return;
-                js = d.createElement(s); js.id = id;
+                js = d.createElement(s);
+                js.id = id;
                 js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
@@ -27,7 +46,7 @@
         {% for element in article.content %}
             {% if element.type == 'text' %}
                 {% markdown %}
-                {{ element.value }}
+                    {{ element.value }}
                 {% endmarkdown %}
             {% elseif element.type == 'video' %}
                 <iframe width="100%" height="400px" src="https://www.youtube.com/embed/{{ element.value }}"
@@ -37,14 +56,15 @@
             {% endif %}
         {% endfor %}
         <div id="comments">
-            <div class="fb-comments" data-href="{{ url('show_article', {'id': article.id}) }}" data-width="100%" data-numposts="50"></div>
+            <div class="fb-comments" data-href="{{ url('show_article', {'id': article.id}) }}" data-width="100%"
+                 data-numposts="50"></div>
         </div>
     </div>
     <div class="col-lg-4" id="sidebar">
         <h2 class="banner">Najnowsze artykuły</h2>
         {{ render(controller(
-        'Propaganda\\Infrastructure\\Controller\\DefaultController::recentArticles',
-        { 'limit': 10 }
+            'Propaganda\\Infrastructure\\Controller\\DefaultController::recentArticles',
+            { 'limit': 10 }
         )) }}
     </div>
 {% endblock %}

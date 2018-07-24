@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta property="fb:app_id" content="405128969971041" />
+    <title>{% block title %}Strona Główna{% endblock %} - Rowerowy Białystok</title>
     <link rel="stylesheet" href="{{ asset('static/css/bootstrap.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('static/css/global.css') }}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" type="image/x-icon" href="{{ asset('static/img/favicon.png') }}"/>
+    {% block facebook_metadata %}{% endblock %}
 </head>
 <body>
 <div class="container">
-    <div class="logo"><a href="{{ path('homepage') }}"><img style="width: 100px; margin: 5px" src="{{ asset('static/img/logo_rb.png') }}"></a></div>
+    <div class="logo"><a href="{{ path('homepage') }}"><img style="width: 100px; margin: 5px" src="{{ asset('static/img/logo_rb.png') }}"></a><a style="font-weight: bold; display: block; float: right; margin-top: 81px;" href="https://www.facebook.com/rowerowybialystok/"><i style="font-size: 25px;" class="fa fa fa-facebook-official"></i> /rowerowybialystok</a></div>
     <div class="navbar navbar-static-top">
         <div class="container">
             <div class="navbar-header">
