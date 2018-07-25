@@ -8,7 +8,15 @@ Propaganda\Domain\Entity\Article:
   fields:
     title:
       type: string
+      length: 250
+    author:
+      type: string
       length: 120
+      nullable: true
+    slug:
+      type: string
+      length: 250
+      nullable: true
     coverImageId:
       type: uuid
       nullable: true

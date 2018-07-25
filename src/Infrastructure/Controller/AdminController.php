@@ -89,9 +89,12 @@ class AdminController extends Controller
 
         $data = [
             "title" => $article->getTitle(),
+            "author" => $article->getAuthor(),
+            "slug" => $article->getSlug(),
             "content" => $content,
             "coverImage" => $article->getCoverImageId() ? $article->getCoverImageId()->toString() : ''
         ];
+
         return new JsonResponse($data);
     }
 
@@ -117,7 +120,14 @@ class AdminController extends Controller
         }
         $coverImageId = $data['coverImage'] ? Uuid::fromString($data['coverImage']) : null;
 
-        $editArticleRequest = new EditArticleRequest(Uuid::fromString($id), $data['title'], $content, $coverImageId);
+        $editArticleRequest = new EditArticleRequest(
+            Uuid::fromString($id),
+            $data['title'],
+            $content,
+            $coverImageId,
+            $data['author'],
+            $data['slug']
+        );
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
         $response = $articleService->editArticle($editArticleRequest);

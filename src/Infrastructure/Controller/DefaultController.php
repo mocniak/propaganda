@@ -31,11 +31,11 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function articleAction($id)
+    public function articleAction(string $slug)
     {
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
-        $article = $articleService->getArticle(Uuid::fromString($id));
+        $article = $articleService->getArticleBySlug($slug);
         return $this->render('default/article.html.twig', ['article' => $article]);
     }
 

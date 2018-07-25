@@ -14,6 +14,7 @@ class CreateArticleType extends AbstractType
     {
         $builder
             ->add('title', TextType::class)
+            ->add('author', TextType::class)
             ->add('Create', SubmitType::class)
         ;
     }

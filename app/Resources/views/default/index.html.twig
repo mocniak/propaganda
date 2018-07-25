@@ -6,10 +6,10 @@
             <div class="item-{{ loop.index }}"
                  style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}')">
                 <div class="header">
-                    <a href="{{ path('show_article', {'id': article.id}) }}">{{ article.title }}</a>
+                    <a href="{{ path('show_article', {'slug': article.slug}) }}">{{ article.title }}</a>
                     <div class="description">
                         <span class="date">{{ article.createdAt.format('Y-m-d') }}</span>
-                        <span class="author">Gal Anonim</span>
+                        <span class="author">{{ article.author }}</span>
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                          style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}');"></div>
                 {% endif %}
                 <div class="news-item-content">
-                    <h3><a href="{{ path('show_article', {'id': article.id}) }}"> {{ article.title }}</a></h3>
+                    <h3><a href="{{ path('show_article', {'slug': article.slug}) }}"> {{ article.title }}</a></h3>
                     {% set break = false %}
                     {% for element in article.content if not break %}
                         {% if element.type == 'text' %}

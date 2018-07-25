@@ -11,4 +11,6 @@ interface ArticleRepositoryInterface
     public function get(UuidInterface $id): Article;
 
     public function getNewest(int $int): array;
+
+    public function getBySlug($slug): Article;
 }

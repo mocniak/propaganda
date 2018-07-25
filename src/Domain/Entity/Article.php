@@ -2,6 +2,7 @@
 
 namespace Propaganda\Domain\Entity;
 
+use Cocur\Slugify\Slugify;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -25,13 +26,21 @@ class Article
      * @var \DateTimeImmutable
      */
     private $createdAt;
+    /**
+     * @var string
+     */
+    private $author;
 
-    public function __construct(string $title, array $content)
+    private $slug;
+
+    public function __construct(string $title, array $content, string $author)
     {
         $this->id = Uuid::uuid4();
         $this->title = $title;
         $this->content = $content;
         $this->createdAt = new \DateTimeImmutable();
+        $this->author = $author;
+        $this->slug = (new Slugify())->slugify($title);
     }
 
     public function getTitle(): string
@@ -72,5 +81,25 @@ class Article
     public function getCreatedAt(): \DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+    public function setSlug(string $slug): void
+    {
+        $this->slug = (new Slugify())->slugify($slug);
+    }
+
+    public function setAuthor(string $author): void
+    {
+        $this->author = $author;
     }
 }

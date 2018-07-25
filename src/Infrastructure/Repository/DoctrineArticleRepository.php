@@ -37,4 +37,9 @@ class DoctrineArticleRepository implements ArticleRepositoryInterface
     {
         return $this->repository->findBy([],['createdAt' => 'DESC'], $int);
     }
+
+    public function getBySlug($slug): Article
+    {
+        return $this->repository->findOneBy(['slug'=>$slug]);
+    }
 }

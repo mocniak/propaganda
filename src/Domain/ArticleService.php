@@ -22,9 +22,9 @@ class ArticleService
         $this->articleRepository = $articleRepository;
     }
 
-    public function addArticle(NewArticleRequest $dto): NewArticleResponse
+    public function addArticle(NewArticleRequest $newArticleRequest): NewArticleResponse
     {
-        $article = new Article($dto->title, []);
+        $article = new Article($newArticleRequest->title, [], $newArticleRequest->author);
         $this->articleRepository->save($article);
         return new NewArticleResponse(true, $article->getId());
     }
@@ -40,6 +40,8 @@ class ArticleService
         $article->setTitle($editArticleRequest->title);
         $article->setContent($editArticleRequest->content);
         $article->setCoverImageId($editArticleRequest->coverImageId);
+        $article->setSlug($editArticleRequest->slug);
+        $article->setAuthor($editArticleRequest->author);
         $this->articleRepository->save($article);
         return new EditArticleResponse(true, $article->getId());
     }
@@ -48,5 +50,10 @@ class ArticleService
     {
         $articles = $this->articleRepository->getNewest($limit);
         return $articles;
+    }
+
+    public function getArticleBySlug(string $slug): Article
+    {
+        return $this->articleRepository->getBySlug($slug);
     }
 }

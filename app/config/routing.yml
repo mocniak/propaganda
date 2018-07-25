@@ -3,7 +3,7 @@ homepage:
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::indexAction }
 
 show_article:
-  path: /article/{id}
+  path: /article/{slug}
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::articleAction }
 
 dashboard:
