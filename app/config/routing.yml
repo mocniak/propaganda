@@ -16,12 +16,12 @@ create_article:
 
 get_article_data:
 #  methods: [GET]
-  path: /admin/get-article-data/{id}
+  path: /api/get-article-data/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::getArticleDataAction }
 
 submit_edit_article:
   methods: [POST|OPTIONS]
-  path: /admin/submit-edit-article/{id}
+  path: /api/submit-edit-article/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::submitEditArticleAction }
 
 edit_article:
