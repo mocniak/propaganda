@@ -29,12 +29,6 @@ h3 a {
     list-style: none !important; /* IE FIX */
 }
 
-@media (min-width: 768px) {
-    .navbar-right {
-        margin-right: 15px;
-    }
-}
-
 footer {
     padding: 30px 30px 20px 30px;
     margin-top: 70px;
@@ -46,22 +40,6 @@ footer .links a {
     margin-right: 20px;
 }
 
-.navbar {
-    background-color: #333333;
-    color: white;
-    font-weight: bold;
-    border-bottom: 7px solid #4a90e2;
-    margin: 0 0 5px 0;
-}
-
-.navbar a {
-    color: white;
-}
-
-.navbar ul > li > a:hover {
-    background-color: #4a90e2;
-}
-
 #article p {
     margin: 25px 0;
 }
@@ -70,6 +48,7 @@ footer .links a {
     font-size: 16px;
     line-height: 25px;
 }
+
 #article h1 {
     font-size: 32px;
     font-weight: bold;
@@ -96,16 +75,19 @@ footer .links a {
 #article tr:hover {
     background-color: #ccc !important;
 }
+
 #article-sidebar {
     line-height: 1.2;
     padding: 0;
     margin: 0 10px;
 }
+
 #article-sidebar li {
     list-style: none;
     padding: 0;
     margin: 20px 0;
 }
+
 #article-sidebar li a {
     font-size: 20px;
     font-weight: bold;
@@ -226,23 +208,58 @@ h2.banner {
     color: white;
     background-color: rgba(0, 0, 0, 0.4);
 }
+
 #top-news a {
     font-size: 20px;
     font-weight: bold;
     color: white;
 }
+
 .news-column {
     border-top: solid 5px #4a90e2;
     padding: 20px 0 0 0;
 }
+footer {
+    background-color: #333333;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+footer ul {
+    /*list-style: none;*/
+    margin: 0;
+    padding: 0;
+}
+footer li {
+    display: inline-block;
+}
 
-@media (min-width: 1200px) {
+.logo {
+    border: 0 solid #333333;
+    border-bottom-width: 20px;
+}
+
+@media (min-width: 1024px) {
+    #article {
+        float: left;
+        width: 66.7%;
+        padding-right: 15px;
+    }
+    #sidebar {
+        float: right;
+        width: 33.3%;
+        padding-left: 15px;
+    }
     #article h1 {
         font-size: 40px;
     }
+
     #top-news {
         height: 410px;
+        margin: 5px -5px 0;
     }
+
     #top-news > div {
         height: 195px;
         width: calc(40% - 10px);
@@ -267,19 +284,8 @@ h2.banner {
         font-size: 32px;
     }
 
-    #top-news div.header {
-        padding: 10px 20px;
-        display: block;
-        position: absolute;
-        bottom: 0;
-        color: white;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
-
     #top-news a {
         font-size: 22px;
-        font-weight: bold;
-        color: white;
     }
 
     #top-news .author {
@@ -300,7 +306,7 @@ h2.banner {
 
     .events-column {
         width: calc(33% - 10px);
-        margin: 5px;
+        margin: 5px 0;
         float: right;
     }
 

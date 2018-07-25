@@ -14,43 +14,14 @@
 <body>
 <div class="container">
     <div class="logo"><a href="{{ path('homepage') }}"><img style="width: 100px; margin: 5px" src="{{ asset('static/img/logo_rb.png') }}"></a><a style="font-weight: bold; display: block; float: right; margin-top: 81px;" href="https://www.facebook.com/rowerowybialystok/"><i style="font-size: 25px;" class="fa fa fa-facebook-official"></i> /rowerowybialystok</a></div>
-    <div class="navbar navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="{{ path('homepage') }}">Strona główna</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('homepage') }}">Wydarzenia</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('homepage') }}">Poradnik</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('homepage') }}">Infrastruktura</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('homepage') }}">Społeczność</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
 </div>
 <div class="container">
     {% block body %}{% endblock %}
 </div>
 {% block javascripts %}{% endblock %}
 <footer>
-
+    <p>Rowerowy Białystok</p>
+    <p><a href="#">Kontakt</a> &centerdot; <a href="#">O nas</a></p>
 </footer>
 </body>
 </html>

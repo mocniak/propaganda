@@ -19,7 +19,7 @@
 {% endblock %}
 
 {% block body %}
-    <div id="article" class="col-lg-8">
+    <div id="article">
         <h1>{{ article.title }}</h1>
         {{ article.createdAt.format('Y-m-d') }} Gal Anonim
         <!-- Load Facebook SDK for JavaScript -->
@@ -60,7 +60,7 @@
                  data-numposts="50"></div>
         </div>
     </div>
-    <div class="col-lg-4" id="sidebar">
+    <div id="sidebar">
         <h2 class="banner">Najnowsze artykuły</h2>
         {{ render(controller(
             'Propaganda\\Infrastructure\\Controller\\DefaultController::recentArticles',
