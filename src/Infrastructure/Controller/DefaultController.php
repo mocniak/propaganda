@@ -39,6 +39,11 @@ class DefaultController extends Controller
         return $this->render('default/article.html.twig', ['article' => $article]);
     }
 
+    public function contactAction()
+    {
+        return $this->render('default/contact.html.twig');
+    }
+
     public function recentArticles($limit)
     {
         /** @var ArticleService $articleService */

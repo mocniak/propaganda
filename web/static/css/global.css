@@ -58,6 +58,10 @@ footer .links a {
     font-size: 25px;
 }
 
+#article h3 {
+    font-size: 20px;
+}
+
 #article th {
     background-color: #4a90e2;
     color: white;

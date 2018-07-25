@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="article">
+        <h1>Stowarzyszenie Rowerowy Białystok</h1>
+        <p>REGON: 366738096, NIP: 5423270011, KRS: 0000666366</p>
+        <ul>
+            <li>www: <a href="http://rowerowybialystok.pl/">rowerowybialystok.pl</a> </li>
+            <li>email: <a href="mailto:rowerowybialystok@gmail.com">rowerowybialystok@gmail.com</a></li>
+            <li>facebook: <a href="https://www.facebook.com/rowerowybialystok/">/rowerowybialystok</a></li>
+        </ul>
+
+        <h2>Zespół</h2>
+        <p><strong>Zarząd:</strong> Bartosz Czarniecki, Piotr Kempisty, Marcin Rogaczewski</p>
+        <p><strong>Komisja rewizyjna:</strong>  Andrzej Konarski, Konrad Matuk, Marcin Adam Wróbel</p>
+        <p><strong>RowerowyBialystok.pl:</strong> Karol Mocniak (administracja)</p>
+    </div>
+    <div id="sidebar">
+        <h2 class="banner">Najnowsze artykuły</h2>
+        {{ render(controller(
+            'Propaganda\\Infrastructure\\Controller\\DefaultController::recentArticles',
+            { 'limit': 10 }
+        )) }}
+    </div>
+{% endblock %}
+
+{% block title %}
+Kontakt
+{% endblock %}
+
