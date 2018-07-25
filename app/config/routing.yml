@@ -3,11 +3,11 @@ homepage:
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::indexAction }
 
 show_article:
-  path: /article/{slug}
+  path: /art/{slug}
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::articleAction }
 
 contact_page:
-  path: /contact
+  path: /kontakt
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::contactAction }
 
 dashboard:
