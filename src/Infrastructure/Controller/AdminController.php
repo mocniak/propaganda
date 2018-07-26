@@ -9,6 +9,7 @@ use Propaganda\Domain\Dto\EditFeaturedArticlesRequest;
 use Propaganda\Domain\Dto\NewArticleRequest;
 use Propaganda\Domain\Dto\NewEventRequest;
 use Propaganda\Domain\Dto\NewImageRequest;
+use Propaganda\Domain\Dto\NewVideoRequest;
 use Propaganda\Domain\Entity\Article\ContentInterface;
 use Propaganda\Domain\Entity\Article\Image;
 use Propaganda\Domain\Entity\Article\Text;
@@ -19,9 +20,12 @@ use Propaganda\Domain\ImageService;
 use Propaganda\Domain\Repository\ArticleRepositoryInterface;
 use Propaganda\Domain\Repository\EventRepositoryInterface;
 use Propaganda\Domain\Repository\ImageRepositoryInterface;
+use Propaganda\Domain\Repository\VideoRepositoryInterface;
+use Propaganda\Domain\VideoService;
 use Propaganda\Infrastructure\FormType\CreateArticleType;
 use Propaganda\Infrastructure\FormType\CreateEventType;
 use Propaganda\Infrastructure\FormType\CreateImageType;
+use Propaganda\Infrastructure\FormType\CreateVideoType;
 use Propaganda\Infrastructure\FormType\EditEventType;
 use Propaganda\Infrastructure\FormType\EditFeaturedArticlesType;
 use Ramsey\Uuid\Uuid;
@@ -44,11 +48,15 @@ class AdminController extends Controller
         /** @var ImageRepositoryInterface $imageRepository */
         $imageRepository = $this->container->get('propaganda.image_repository');
         $images = $imageRepository->getNewest(20);
+        /** @var VideoRepositoryInterface $videoRepository */
+        $videoRepository = $this->container->get('propaganda.video_repository');
+        $videos = $videoRepository->getNewest(20);
 
         return $this->render('admin/dashboard.html.twig', [
             'articles' => $articles,
             'events' => $events,
-            'images' => $images
+            'images' => $images,
+            'videos' => $videos
         ]);
     }
 
@@ -199,7 +207,35 @@ class AdminController extends Controller
 
             return $this->redirectToRoute('dashboard');
         }
+
         return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);
+    }
+
+    public function createVideoAction(Request $request)
+    {
+        /** @var VideoService $videoService */
+        $videoService = $this->container->get('propaganda.video');
+        $videoService->addEmptyVideo();
+
+        return $this->redirectToRoute('edit_video',/* here! */);
+    }
+
+    public function editVideoAction(Request $request)
+    {
+        /** @var ArticleService $articleService */
+        $form = $this->createForm(CreateVideoType::class);
+        $newVideoRequest = new NewVideoRequest();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var VideoService $videoService */
+            $videoService = $this->container->get('propaganda.video');
+            $videoService->addVideo($newVideoRequest);
+
+            return $this->redirectToRoute('dashboard');
+        }
+
+        return $this->render('admin/addVideo.html.twig', ['form' => $form->createView()]);
     }
 
     public function editFeaturedArticlesAction(Request $request)

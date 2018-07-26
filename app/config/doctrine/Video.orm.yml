@@ -1,0 +1,17 @@
+Propaganda\Domain\Entity\Video:
+  type: entity
+  table: videos
+  id:
+    id:
+      type: uuid
+      generator: { strategy: NONE }
+  fields:
+    title:
+      type: text
+    description:
+      type: text
+    youtubeId:
+      type: text
+    createdAt:
+      type: datetime_immutable
+      nullable: true

@@ -67,3 +67,11 @@ services:
     arguments: ['@markdown.engine']
     tags:
       - { name: twig.extension }
+  propaganda.video:
+    class: Propaganda\Domain\VideoService
+    arguments:
+      - '@propaganda.video_repository'
+  propaganda.video_repository:
+    class: Propaganda\Infrastructure\Repository\DoctrineVideoRepository
+    arguments:
+      - "@doctrine.orm.default_entity_manager"

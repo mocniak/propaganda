@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ article.title }}
+{% endblock %}
+
+{% block facebook_metadata %}
+    <meta property="og:url" content="{{ url('show_article', {'slug': article.slug}) }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{ article.title }}"/>
+    <meta property="og:description" content="{% set break = false %}
+{% for element in article.content if not break %}
+{% if element.type == 'text' %}
+{{ element.value|length > 350 ? element.value|slice(0, 350) ~ '...' : element.value }}
+{% set break = true %}
+{% endif %}
+{% endfor %}"/>
+    <meta property="og:image" content="{{ url('image_content', {'id': article.coverImageId}) }}"/>
+{% endblock %}
+
+{% block body %}
+    <div id="article">
+        <h1>{{ article.title }}</h1>
+        {{ article.createdAt.format('Y-m-d') }} {{ article.author }}
+        <!-- Load Facebook SDK for JavaScript -->
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+
+        <!-- Your share button code -->
+        <div class="fb-share-button"
+             data-href="{{ path('show_article', {'slug': article.slug}) }}"
+             data-layout="button">
+
+        </div>
+        <a class="twitter-share-button" style="font-size: 20px; margin: 5px 5px 0 0; display: block; float: left;"
+           href="https://twitter.com/intent/tweet?text={{ article.title }}&amp;url={{ url('show_article', {'slug': article.slug}) }}"
+           data-size="large">
+            <i class="fa fa-twitter"></i></a>
+        {% for element in article.content %}
+            {% if element.type == 'text' %}
+                {% markdown %}
+                    {{ element.value }}
+                {% endmarkdown %}
+            {% elseif element.type == 'video' %}
+                <iframe width="100%" height="400px" src="https://www.youtube.com/embed/{{ element.value }}"
+                        frameborder="0" allowfullscreen></iframe>
+            {% elseif element.type == 'image' %}
+                <p><img style="width: 100%;" src="{{ path('image_content', {'id': element.value}) }}"/></p>
+            {% endif %}
+        {% endfor %}
+        <div id="comments">
+            <div class="fb-comments" data-href="{{ url('show_article', {'slug': article.slug}) }}" data-width="100%"
+                 data-numposts="50"></div>
+        </div>
+    </div>
+    <div id="sidebar">
+        <h2 class="banner">Najnowsze artykuły</h2>
+        {{ render(controller(
+            'Propaganda\\Infrastructure\\Controller\\DefaultController::recentArticles',
+            { 'limit': 10 }
+        )) }}
+    </div>
+{% endblock %}
