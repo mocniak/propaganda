@@ -175,13 +175,13 @@ footer .links a {
 }
 
 .playlist-element {
-    float: right;
-    width: 39%;
-    height: 133px;
+    height: 122px;
     margin: 0 0 10px 0;
     background-color: #333333;
     padding: 10px;
     color: white;
+    font-size: 12px;
+    text-overflow: ellipsis;
 }
 
 .playlist-element a {
@@ -198,10 +198,14 @@ footer .links a {
 .video-image {
     margin-right: 10px;
     width: 50%;
-    height: 110px;
+    height: 102px;
     float: left;
     background-size: cover;
     background-position: center;
+}
+
+.player {
+    text-align: center;
 }
 
 h2.banner {
@@ -269,6 +273,26 @@ footer li {
 .logo {
     border: 0 solid #333333;
     border-bottom-width: 20px;
+}
+
+iframe.youtube {
+    height: 200px;
+}
+
+@media (min-width: 600px) {
+    iframe.youtube {
+        height: 300px;
+    }
+
+    .playlist-element {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 800px) {
+    iframe.youtube {
+        height: 400px;
+    }
 }
 
 @media (min-width: 1024px) {
@@ -345,5 +369,19 @@ footer li {
 
     #root {
         width: 66%;
+    }
+
+    .playlist-element {
+        float: right;
+        width: 39%;
+    }
+
+    .player {
+        width: 60%;
+        float: left;
+    }
+
+    iframe.youtube {
+        height: 385px;
     }
 }
