@@ -37,8 +37,16 @@ create_image:
   path: /admin/create-image
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createImageAction }
 
+create_video:
+  path: /admin/create-video
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createVideoAction }
+
+edit_video:
+  path: /admin/edit-video/{id}
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editVideoAction }
+
 image_content:
-  path: /admin/image-content/{id}
+  path: /image/image-content/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::ImageContentAction }
 
 create_event:

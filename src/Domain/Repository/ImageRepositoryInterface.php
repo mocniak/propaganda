@@ -7,7 +7,7 @@ use Ramsey\Uuid\UuidInterface;
 
 interface ImageRepositoryInterface
 {
-    public function save(Image $article): void;
+    public function save(Image $image): void;
 
     public function get(UuidInterface $id): Image;
 

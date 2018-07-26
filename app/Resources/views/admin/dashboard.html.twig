@@ -16,6 +16,7 @@
             <li>Brak artykułów.</li>
         {% endfor %}
     </ul>
+
     <h2>Wydarzenia</h2>
     <p><a href="{{ path('create_event') }}">+ dodaj</a></p>
     <ul>
@@ -26,6 +27,18 @@
             </li>
         {% else %}
             <li>Brak wydarzeń.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Wideo</h2>
+    <p><a href="{{ path('create_video') }}">+ dodaj</a></p>
+    <ul>
+        {% for video in videos %}
+            <li>
+                {{ video.title }} | <a href="{{ path('edit_video', {'id': video.id }) }}">[edytuj]</a>
+            </li>
+        {% else %}
+            <li>Brak filmów.</li>
         {% endfor %}
     </ul>
 
