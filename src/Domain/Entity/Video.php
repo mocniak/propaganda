@@ -46,4 +46,20 @@ class Video
     {
         return $this->createdAt;
     }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    public function setYoutubeId(string $youtubeId): void
+    {
+        $this->youtubeId = $youtubeId;
+    }
+
 }

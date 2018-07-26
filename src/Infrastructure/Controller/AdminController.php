@@ -9,7 +9,7 @@ use Propaganda\Domain\Dto\EditFeaturedArticlesRequest;
 use Propaganda\Domain\Dto\NewArticleRequest;
 use Propaganda\Domain\Dto\NewEventRequest;
 use Propaganda\Domain\Dto\NewImageRequest;
-use Propaganda\Domain\Dto\NewVideoRequest;
+use Propaganda\Domain\Dto\EditVideoRequest;
 use Propaganda\Domain\Entity\Article\ContentInterface;
 use Propaganda\Domain\Entity\Article\Image;
 use Propaganda\Domain\Entity\Article\Text;
@@ -25,7 +25,7 @@ use Propaganda\Domain\VideoService;
 use Propaganda\Infrastructure\FormType\CreateArticleType;
 use Propaganda\Infrastructure\FormType\CreateEventType;
 use Propaganda\Infrastructure\FormType\CreateImageType;
-use Propaganda\Infrastructure\FormType\CreateVideoType;
+use Propaganda\Infrastructure\FormType\EditVideoType;
 use Propaganda\Infrastructure\FormType\EditEventType;
 use Propaganda\Infrastructure\FormType\EditFeaturedArticlesType;
 use Ramsey\Uuid\Uuid;
@@ -172,7 +172,6 @@ class AdminController extends Controller
         $eventService = $this->container->get('propaganda.event');
 
         $event = $eventService->getEvent(Uuid::fromString($id));
-
         $editEventRequest = EditEventRequest::fromEvent($event);
 
         $form = $this->createForm(EditEventType::class, $editEventRequest);
@@ -189,7 +188,6 @@ class AdminController extends Controller
 
     public function createImageAction(Request $request)
     {
-        /** @var ArticleService $articleService */
         $form = $this->createForm(CreateImageType::class);
         $form->handleRequest($request);
 
@@ -215,22 +213,26 @@ class AdminController extends Controller
     {
         /** @var VideoService $videoService */
         $videoService = $this->container->get('propaganda.video');
-        $videoService->addEmptyVideo();
+        $newVideoId = $videoService->addEmptyVideo();
 
-        return $this->redirectToRoute('edit_video',/* here! */);
+        return $this->redirectToRoute('edit_video', ['id' => $newVideoId->toString()]);
     }
 
-    public function editVideoAction(Request $request)
+    public function editVideoAction($id, Request $request)
     {
-        /** @var ArticleService $articleService */
-        $form = $this->createForm(CreateVideoType::class);
-        $newVideoRequest = new NewVideoRequest();
+        /** @var VideoService $videoService */
+        $videoService = $this->container->get('propaganda.video');
+        $video = $videoService->getVideo(Uuid::fromString($id));
+
+        $editVideoRequest = EditVideoRequest::fromVideo($video);
+
+        $form = $this->createForm(EditVideoType::class, $editVideoRequest);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var VideoService $videoService */
             $videoService = $this->container->get('propaganda.video');
-            $videoService->addVideo($newVideoRequest);
+            $videoService->editVideo($editVideoRequest);
 
             return $this->redirectToRoute('dashboard');
         }
