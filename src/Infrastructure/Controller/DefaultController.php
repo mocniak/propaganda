@@ -6,6 +6,7 @@ use Propaganda\Domain\ArticleService;
 use Propaganda\Domain\EventService;
 use Propaganda\Domain\FeaturedArticlesService;
 use Propaganda\Domain\ImageService;
+use Propaganda\Domain\Repository\VideoRepositoryInterface;
 use Ramsey\Uuid\Uuid;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,10 +25,14 @@ class DefaultController extends Controller
         $eventService = $this->container->get('propaganda.event');
         $events = $eventService->getUpcoming(5);
 
+        /** @var VideoRepositoryInterface $videoRepository */
+        $videoRepository = $this->container->get('propaganda.video_repository');
+        $videos = $videoRepository->getNewest(5);
         return $this->render('default/index.html.twig', [
             'articles' => $articles,
             'featuredArticles' => $featuredArticles,
-            'events' => $events
+            'events' => $events,
+            'videos' => $videos
         ]);
     }
 
