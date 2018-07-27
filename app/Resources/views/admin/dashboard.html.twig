@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+Panel Administracyjny
+{% endblock %}
+
 {% block body %}
     <h2>Strona główna</h2>
     <p><a href="{{ path('edit_featured_articles') }}">Artykuły wyróżnione</a></p>
@@ -10,7 +14,12 @@
         {% for article in articles %}
             <li>
                 <a href="{{ path('show_article', {'slug': article.slug}) }}">{{ article.title }}</a> |
-                <a href="{{ path('edit_article', {'id': article.id}) }}">[edytuj]</a>
+                <a href="{{ path('edit_article', {'id': article.id}) }}">[edytuj]</a> |
+                {% if article.public %}
+                    <a href="{{ path('withdraw_article', {'id': article.id}) }}">[ukryj]</a>
+                {% else %}
+                    <a href="{{ path('publish_article', {'id': article.id}) }}">[publikuj]</a>
+                {% endif %}
             </li>
         {% else %}
             <li>Brak artykułów.</li>

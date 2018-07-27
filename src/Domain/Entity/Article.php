@@ -9,29 +9,13 @@ use Ramsey\Uuid\UuidInterface;
 class Article
 {
     private $id;
-    /**
-     * @var string
-     */
     private $title;
-
-    /**
-     * @var UuidInterface
-     */
     private $coverImageId;
-    /**
-     * @var array
-     */
     private $content;
-    /**
-     * @var \DateTimeImmutable
-     */
     private $createdAt;
-    /**
-     * @var string
-     */
     private $author;
-
     private $slug;
+    private $public;
 
     public function __construct(string $title, array $content, string $author)
     {
@@ -41,6 +25,7 @@ class Article
         $this->createdAt = new \DateTimeImmutable();
         $this->author = $author;
         $this->slug = (new Slugify())->slugify($title);
+        $this->public = false;
     }
 
     public function getTitle(): string
@@ -101,5 +86,20 @@ class Article
     public function setAuthor(string $author): void
     {
         $this->author = $author;
+    }
+
+    public function publish()
+    {
+        $this->public = true;
+    }
+
+    public function withdraw()
+    {
+        $this->public = false;
+    }
+
+    public function isPublic(): bool
+    {
+        return $this->public === true;
     }
 }

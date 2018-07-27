@@ -26,6 +26,7 @@ class ArticleService
     {
         $article = new Article($newArticleRequest->title, [], $newArticleRequest->author);
         $this->articleRepository->save($article);
+
         return new NewArticleResponse(true, $article->getId());
     }
 
@@ -43,17 +44,33 @@ class ArticleService
         $article->setSlug($editArticleRequest->slug);
         $article->setAuthor($editArticleRequest->author);
         $this->articleRepository->save($article);
+
         return new EditArticleResponse(true, $article->getId());
     }
 
     public function getRecent($limit): array
     {
-        $articles = $this->articleRepository->getNewest($limit);
+        $articles = $this->articleRepository->getNewestPublished($limit);
+
         return $articles;
     }
 
     public function getArticleBySlug(string $slug): Article
     {
         return $this->articleRepository->getBySlug($slug);
+    }
+
+    public function publishArticle(UuidInterface $articleId)
+    {
+        $article = $this->articleRepository->get($articleId);
+        $article->publish();
+        $this->articleRepository->save($article);
+    }
+
+    public function withdrawArticle(UuidInterface $articleId)
+    {
+        $article = $this->articleRepository->get($articleId);
+        $article->withdraw();
+        $this->articleRepository->save($article);
     }
 }

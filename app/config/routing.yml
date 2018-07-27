@@ -33,6 +33,16 @@ edit_article:
   path: /admin/edit-article/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editArticlePageAction }
 
+publish_article:
+  methods: [GET]
+  path: /admin/publish-article/{id}
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::publishArticleAction }
+
+withdraw_article:
+  methods: [GET]
+  path: /admin/withdraw-article/{id}
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::withdrawArticleAction }
+
 create_image:
   path: /admin/create-image
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createImageAction }

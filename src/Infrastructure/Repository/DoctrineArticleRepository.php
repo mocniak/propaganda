@@ -33,13 +33,18 @@ class DoctrineArticleRepository implements ArticleRepositoryInterface
         return $article;
     }
 
+    public function getNewestPublished(int $int): array
+    {
+        return $this->repository->findBy(['public' => true], ['createdAt' => 'DESC'], $int);
+    }
+
     public function getNewest(int $int): array
     {
-        return $this->repository->findBy([],['createdAt' => 'DESC'], $int);
+        return $this->repository->findBy([], ['createdAt' => 'DESC'], $int);
     }
 
     public function getBySlug($slug): Article
     {
-        return $this->repository->findOneBy(['slug'=>$slug]);
+        return $this->repository->findOneBy(['slug' => $slug]);
     }
 }

@@ -79,7 +79,7 @@ class AdminController extends Controller
         return $this->render('admin/createArticle.html.twig', ['form' => $form->createView()]);
     }
 
-    public function getArticleDataAction($id, Request $request)
+    public function getArticleDataAction($id)
     {
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
@@ -254,5 +254,19 @@ class AdminController extends Controller
             $featuredArticlesService->editFeaturedArticles($editFeaturedArticlesRequest);
         }
         return $this->render('admin/editFeatured.html.twig', ['form' => $form->createView()]);
+    }
+
+    public function publishArticleAction($id)
+    {
+        $this->get('propaganda.article')->publishArticle(Uuid::fromString($id));
+
+        return $this->redirectToRoute('dashboard');
+    }
+
+    public function withdrawArticleAction($id)
+    {
+        $this->get('propaganda.article')->withdrawArticle(Uuid::fromString($id));
+
+        return $this->redirectToRoute('dashboard');
     }
 }

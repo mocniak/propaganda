@@ -50,9 +50,9 @@ class FeaturedArticlesService
     public function getNotFeatured(int $amount): array
     {
         $featuredArticlesIds = $this->getFeaturedArticlesIds();
-        $newestArticles = $this->articleRepository->getNewest($amount + $featuredArticlesIds->getAmount());
+        $newestArticles = $this->articleRepository->getNewestPublished($amount + $featuredArticlesIds->getAmount());
         /** @var Article $article */
-        $newestArticles = array_filter($newestArticles, function ($article) use ($featuredArticlesIds) {
+        $newestArticles = array_filter($newestArticles, function (Article $article) use ($featuredArticlesIds) {
             return !in_array($article->getId(), $featuredArticlesIds->getAll());
         });
         return array_splice($newestArticles, 0, $amount);
