@@ -22,14 +22,16 @@
             <div class="news-item">
                 {% if article.coverImageId is not null %}
                     <div class="news-item-image"
-                         style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}');"></div>
+                         style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}');">
+                        <a href="{{ path('show_article', {'slug': article.slug}) }}" class="cover-all"></a>
+                    </div>
                 {% endif %}
                 <div class="news-item-content">
                     <h3><a href="{{ path('show_article', {'slug': article.slug}) }}"> {{ article.title }}</a></h3>
                     {% set break = false %}
                     {% for element in article.content if not break %}
                         {% if element.type == 'text' %}
-                            <p>{{ element.value|length > 350 ? element.value|slice(0, 350) ~ '...' : element.value }}</p>
+                            <p>{{ element.value|length > 320 ? element.value|slice(0, 320) ~ '...' : element.value }}</p>
                             {% set break = true %}
                         {% endif %}
                     {% endfor %}

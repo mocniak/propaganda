@@ -36,6 +36,15 @@ class DoctrineEventRepository implements EventRepositoryInterface
 
     public function getUpcoming(int $int): array
     {
-        return $this->repository->findBy([],['date' => 'ASC'], $int);
+        $queryBuilder = $this->entityManager->createQueryBuilder();
+        $query = $queryBuilder->select('e')
+            ->from('Propaganda:Event', 'e')
+            ->where('e.date > :yesterday')
+            ->orderBy('e.date', 'ASC')
+            ->setMaxResults($int)
+            ->setParameter('yesterday', (new \DateTimeImmutable('yesterday'))->format('Y-m-d'))
+            ->getQuery();
+
+        return $query->execute();
     }
 }
