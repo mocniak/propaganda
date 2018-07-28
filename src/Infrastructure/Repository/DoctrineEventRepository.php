@@ -39,10 +39,10 @@ class DoctrineEventRepository implements EventRepositoryInterface
         $queryBuilder = $this->entityManager->createQueryBuilder();
         $query = $queryBuilder->select('e')
             ->from('Propaganda:Event', 'e')
-            ->where('e.date > :yesterday')
+            ->where('e.date >= :today')
             ->orderBy('e.date', 'ASC')
             ->setMaxResults($int)
-            ->setParameter('yesterday', (new \DateTimeImmutable('yesterday'))->format('Y-m-d'))
+            ->setParameter('today', (new \DateTimeImmutable('today'))->format('Y-m-d'))
             ->getQuery();
 
         return $query->execute();
