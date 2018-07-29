@@ -384,4 +384,48 @@ iframe.youtube {
     iframe.youtube {
         height: 385px;
     }
+
+    #simple-form {
+        width: 60%;
+        float: left;
+    }
+
+    #simple-form form div div {
+        padding: 10px;
+        clear: both;
+    }
+
+    #simple-form label {
+        text-align: left;
+        display: block;
+        float: left;
+        width: 30%;
+    }
+
+    #simple-form input, #simple-form textarea {
+        display: block;
+        float: right;
+        width: 65%;
+    }
+
+    #simple-form textarea {
+        height: 200px;
+    }
+
+    #simple-form button[type="submit"] {
+        clear: both;
+        float: right;
+        font-weight: bold;
+        border: 2px solid #4a90e2;
+        background-color: #4a90e2;
+        padding: 5px 16px;
+        color: white;
+        margin: 10px;
+        width: calc(65% - 12px);
+    }
+
+    #simple-form button[type="submit"]:hover {
+        background-color: white;
+        color: #4a90e2;
+    }
 }

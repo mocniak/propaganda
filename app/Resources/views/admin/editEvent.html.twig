@@ -1,7 +1,29 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+    <div id="simple-form">
+        {{ form_start(form) }}
+        <div>
+            <div style="text-align: right">
+                {{ form_label(form.date) }}
+                {{ form_errors(form.date) }}
+                {{ form_widget(form.date.date.year) }} -
+                {{ form_widget(form.date.date.month) }} -
+                {{ form_widget(form.date.date.day) }} godzina
+                {{ form_widget(form.date.time.hour) }} :
+                {{ form_widget(form.date.time.minute) }}
+            </div>
+            <div>
+                {{ form_label(form.title) }}
+                {{ form_errors(form.title) }}
+                {{ form_widget(form.title) }}
+            </div>
+            <div>
+                {{ form_label(form.description) }}
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

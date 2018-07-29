@@ -21,7 +21,9 @@ class EditEventType extends AbstractType
             ->add('eventId', HiddenType::class)
             ->add('title')
             ->add('description', TextareaType::class)
-            ->add('date', DateTimeType::class)
+            ->add('date', DateTimeType::class, [
+                'minutes' => [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
+            ])
             ->add('save', SubmitType::class);
         $builder->get('eventId')
             ->addModelTransformer(new CallbackTransformer(
