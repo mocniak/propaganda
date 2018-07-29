@@ -49,11 +49,10 @@
         <h2 class="banner">Wydarzenia</h2>
         {% for event in events %}
             <div class="event-item clearfix" style="margin: 0">
-                {#<div class="news-item-image" style="float: left; height: 66px; background-color: #985f0d; display: block; width: 100%;"></div>#}
                 <div class="news-item-content">
                     <p style="font-size: 20px">{{ event.date.format('Y-m-d') }} |
                         <strong>{{ event.title }}</strong></p>
-                    {{ event.description }}
+                    {% markdown %}{{ event.description }}{% endmarkdown %}
                 </div>
                 <hr>
             </div>
