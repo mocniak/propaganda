@@ -49,6 +49,12 @@ class DefaultController extends Controller
         return $this->render('default/contact.html.twig');
     }
 
+
+    public function aboutUsAction()
+    {
+        return $this->render('default/about_us.html.twig');
+    }
+
     public function recentArticles($limit)
     {
         /** @var ArticleService $articleService */
@@ -56,7 +62,6 @@ class DefaultController extends Controller
         $articles = $articleService->getRecent((int)$limit);
         return $this->render('default/recent_articles_sidebar.html.twig', ['articles' => $articles]);
     }
-
     public function imageContentAction($id)
     {
         /** @var ImageService $imageService */

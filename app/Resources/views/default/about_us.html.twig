@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="article">
+        <h1>O nas</h1>
+        <p>Stowarzyszenie Rowerowy Białystok od ponad 10 lat działa na rzecz wszystkich białostockich rowerzystów. Walczymy o dobrą infrastrukturę, tworzymy raporty nt. bezpieczeństwa ruchu drogowego, prowadzimy zajęcia edukacyjne w szkołach, organizujemy szkolenia dla urzędników.</p>
+        <p>Członkowie Rowerowego Białegostoku działają w ramach ogólnopolskiej sieci <a href="http://www.miastadlarowerow.pl">Miasta dla Rowerów</a> oraz <a href="https://ecf.com/">Europejskiej Federacji Cyklistów</a>.</p>
+        <p></p>
+    </div>
+    <div id="sidebar">
+        <h2 class="banner">Najnowsze artykuły</h2>
+        {{ render(controller(
+            'Propaganda\\Infrastructure\\Controller\\DefaultController::recentArticles',
+            { 'limit': 10 }
+        )) }}
+    </div>
+{% endblock %}
+
+{% block title %}
+O nas
+{% endblock %}
+

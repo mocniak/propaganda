@@ -10,6 +10,10 @@ contact_page:
   path: /kontakt
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::contactAction }
 
+about_us_page:
+  path: /o-nas
+  defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::aboutUsAction }
+
 dashboard:
   path: /admin
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::dashboardAction }
