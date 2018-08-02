@@ -60,7 +60,7 @@ services:
     arguments:
       - "@doctrine.orm.default_entity_manager"
   markdown.engine:
-    class: Aptoma\Twig\Extension\MarkdownEngine\MichelfMarkdownEngine
+    class: Aptoma\Twig\Extension\MarkdownEngine\ParsedownEngine
 
   twig.markdown:
     class: Aptoma\Twig\Extension\MarkdownExtension
