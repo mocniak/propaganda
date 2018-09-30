@@ -13,18 +13,18 @@ class Column
     private $name;
     private $type;
 
-    public function __construct(string $name, string $type)
+    public function __construct(string $name = null, string $type = null)
     {
         $this->name = $name;
         $this->type = $type;
     }
 
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }

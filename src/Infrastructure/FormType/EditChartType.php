@@ -22,6 +22,7 @@ class EditChartType extends AbstractType
                 'entry_type' => ColumnType::class,
                 'entry_options' => array('label' => false),
                 'allow_add' => true,
+                'allow_delete' => true,
             ])
             ->add('data', TextareaType::class)
             ->add('save', SubmitType::class);
