@@ -49,7 +49,6 @@ class DefaultController extends Controller
         return $this->render('default/contact.html.twig');
     }
 
-
     public function aboutUsAction()
     {
         return $this->render('default/about_us.html.twig');
@@ -60,8 +59,10 @@ class DefaultController extends Controller
         /** @var ArticleService $articleService */
         $articleService = $this->container->get('propaganda.article');
         $articles = $articleService->getRecent((int)$limit);
+
         return $this->render('default/recent_articles_sidebar.html.twig', ['articles' => $articles]);
     }
+
     public function imageContentAction($id)
     {
         /** @var ImageService $imageService */
@@ -69,5 +70,12 @@ class DefaultController extends Controller
         $imageFile = $imageService->getImageFile(UUID::fromString($id));
         $headers = ['Content-Type' => $imageFile->getMimeType()];
         return new Response($imageFile->getContent(), 200, $headers);
+    }
+
+    public function chartAction($id) {
+        $chartRepository = $this->container->get('propaganda.chart_repository');
+        $chart = $chartRepository->get(Uuid::fromString($id));
+
+        return $this->render('default/chart.html.twig', ['chart' => $chart]);
     }
 }
