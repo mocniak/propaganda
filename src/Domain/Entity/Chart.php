@@ -5,18 +5,24 @@ use Ramsey\Uuid\Uuid;
 
 class Chart
 {
+    const TYPE_PIE = 'pie';
+    const TYPE_LINE = 'line';
+    const TYPE_COLUMN = 'column';
+
     private $id;
     private $name;
     private $columns;
     private $data;
+    private $type;
     private $createdAt;
 
-    public function __construct(string $name, array $columns, array $data)
+    public function __construct(string $name, array $columns, array $data, string $type)
     {
         $this->id = Uuid::uuid4();
         $this->name = $name;
         $this->columns = $columns;
         $this->data = $data;
+        $this->type = $type;
         $this->createdAt = new \DateTimeImmutable();
     }
 
@@ -40,6 +46,11 @@ class Chart
         return $this->data;
     }
 
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
     public function setName(string $name): void
     {
         $this->name = $name;
@@ -53,6 +64,11 @@ class Chart
     public function setData(array $data): void
     {
         $this->data = $data;
+    }
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
     }
 
 }

@@ -3,8 +3,10 @@
 namespace Propaganda\Infrastructure\FormType;
 
 use Propaganda\Domain\Dto\EditChartRequest;
+use Propaganda\Domain\Entity\Chart;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -24,6 +26,13 @@ class EditChartType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
             ])
+            ->add('type', ChoiceType::class, [
+                'choices' => [
+                    'Column' => Chart::TYPE_COLUMN,
+                    'Pie' => Chart::TYPE_PIE,
+                    'Line' => Chart::TYPE_LINE,
+                ]
+            ])
             ->add('data', TextareaType::class)
             ->add('save', SubmitType::class);
         $builder->get('data')
@@ -31,15 +40,15 @@ class EditChartType extends AbstractType
                 function ($dataAsArray) {
                     $temp_memory = fopen('php://memory', 'w');
                     foreach ($dataAsArray as $line) {
-                        fputcsv($temp_memory, $line, ',','\'');
+                        fputcsv($temp_memory, $line, ',', '\'');
                     }
                     fseek($temp_memory, 0);
 
                     return stream_get_contents($temp_memory);
                 },
                 function ($dataAsCSV) {
-                    $dataAsArray = str_getcsv($dataAsCSV,"\n");
-                    foreach($dataAsArray as &$row) $row = str_getcsv($row, ",",'\'');
+                    $dataAsArray = str_getcsv($dataAsCSV, "\n");
+                    foreach ($dataAsArray as &$row) $row = str_getcsv($row, ",", '\'');
 
                     return $dataAsArray;
                 }

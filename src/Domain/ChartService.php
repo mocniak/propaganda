@@ -31,21 +31,23 @@ class ChartService
         $chart->setName($request->name);
         $chart->setColumns($request->columns);
         $chart->setData($request->data);
+        $chart->setType($request->type);
         $this->repository->save($chart);
     }
 
     public function addEmptyChart(): UuidInterface
     {
         $chart = new Chart(
-            'Nazwa wykresu',
+            'Chart Name',
             [
-                new Column('Kolumna 1', Column::STRING_TYPE),
-                new Column('Kolumna 2', Column::NUMBER_TYPE)
+                new Column('Column 1', Column::STRING_TYPE),
+                new Column('Column 2', Column::NUMBER_TYPE)
             ],
             [
-                ['Pierwszy wiersz', 12],
-                ['Drugi wiersz', 10]
-            ]
+                ['First Row', 12],
+                ['Second Row', 10]
+            ],
+            Chart::TYPE_COLUMN
         );
         $this->repository->save($chart);
 

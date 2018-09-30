@@ -12,5 +12,7 @@ Propaganda\Domain\Entity\Chart:
       type: array
     columns:
       type: columnsType
+    type:
+      type: string
     createdAt:
       type: datetime_immutable

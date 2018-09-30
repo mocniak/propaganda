@@ -21,7 +21,7 @@
             vAxis: {title: 'Zdarzenia z udziałem rowerzystów i ich ofiary '}
         };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById('{{ chart.id }}'));
+        var chart = new google.visualization.{{ chart.type|capitalize }}Chart(document.getElementById('{{ chart.id }}'));
         chart.draw(data, options);
     }
 
