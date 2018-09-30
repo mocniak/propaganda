@@ -59,6 +59,14 @@ edit_video:
   path: /admin/edit-video/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editVideoAction }
 
+create_chart:
+  path: /admin/create-chart
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::createChartAction }
+
+edit_chart:
+  path: /admin/edit-chart/{id}
+  defaults: { _controller: Propaganda\Infrastructure\Controller\AdminController::editChartAction }
+
 image_content:
   path: /image/image-content/{id}
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::ImageContentAction }

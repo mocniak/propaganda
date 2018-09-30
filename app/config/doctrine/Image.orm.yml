@@ -10,4 +10,3 @@ Propaganda\Domain\Entity\Image:
       type: text
     createdAt:
       type: datetime_immutable
-      nullable: true

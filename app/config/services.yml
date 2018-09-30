@@ -75,3 +75,12 @@ services:
     class: Propaganda\Infrastructure\Repository\DoctrineVideoRepository
     arguments:
       - "@doctrine.orm.default_entity_manager"
+
+  propaganda.chart:
+    class: Propaganda\Domain\ChartService
+    arguments:
+      - '@propaganda.chart_repository'
+  propaganda.chart_repository:
+    class: Propaganda\Infrastructure\Repository\DoctrineChartRepository
+    arguments:
+      - "@doctrine.orm.default_entity_manager"
