@@ -68,8 +68,12 @@ footer .links a {
     text-align: center;
 }
 
+#article table {
+    width: 100%;
+}
+
 #article th, td {
-    padding: 10px;
+    padding: 5px 10px;
 }
 
 #article table tr:nth-child(even) {
