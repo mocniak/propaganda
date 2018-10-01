@@ -53,6 +53,12 @@
                         frameborder="0" allowfullscreen></iframe>
             {% elseif element.type == 'image' %}
                 <p><img style="width: 100%;" src="{{ path('image_content', {'id': element.value}) }}"/></p>
+            {% elseif element.type == 'chart' %}
+                {{ render(controller(
+                    'Propaganda\\Infrastructure\\Controller\\DefaultController::chartAction',
+                    { 'id': element.value }
+                )) }}
+                <div id ="{{ element.value }}"></div>
             {% endif %}
         {% endfor %}
         <div id="comments">

@@ -24,4 +24,3 @@ Propaganda\Domain\Entity\Article:
       type: datetime_immutable
     public:
       type: boolean
-      nullable: true

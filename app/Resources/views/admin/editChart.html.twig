@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="simple-form">
+        {{ form_start(form) }}
+        <h3>Columns</h3>
+        <ul class="columns" style="list-style: none"
+            data-prototype="{{ form_widget(form.columns.vars.prototype)|e('html_attr') }}">
+            {% for column in form.columns %}
+                <li>{{ form_row(column.name) }}{{ form_row(column.type) }}</li>
+            {% endfor %}
+
+        </ul>
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        var $collectionHolder;
+        var $addTagButton = $('<button type="button" class="add_tag_link">Add a column</button>');
+        var $newLinkLi = $('<li></li>').append($addTagButton);
+
+        jQuery(document).ready(function () {
+            $collectionHolder = $('ul.columns');
+            $collectionHolder.find('li').each(function () {
+                addTagFormDeleteLink($(this));
+            });
+            $collectionHolder.append($newLinkLi);
+            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+            $addTagButton.on('click', function (e) {
+                addTagForm($collectionHolder, $newLinkLi);
+            });
+        });
+
+        function addTagForm($collectionHolder, $newLinkLi) {
+            var prototype = $collectionHolder.data('prototype');
+            var index = $collectionHolder.data('index');
+            var newForm = prototype;
+            newForm = newForm.replace(/__name__/g, index);
+            $collectionHolder.data('index', index + 1);
+            var $newFormLi = $('<li></li>').append(newForm);
+            $newLinkLi.before($newFormLi);
+        }
+
+        function addTagFormDeleteLink($tagFormLi) {
+            var $removeFormButton = $('<button type="button">Delete column</button>');
+            $tagFormLi.append($removeFormButton);
+
+            $removeFormButton.on('click', function (e) {
+                // remove the li for the tag form
+                $tagFormLi.remove();
+            });
+        }
+    </script>
+{% endblock %}

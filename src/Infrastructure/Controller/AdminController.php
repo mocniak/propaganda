@@ -3,13 +3,16 @@
 namespace Propaganda\Infrastructure\Controller;
 
 use Propaganda\Domain\ArticleService;
+use Propaganda\Domain\ChartService;
 use Propaganda\Domain\Dto\EditArticleRequest;
+use Propaganda\Domain\Dto\EditChartRequest;
 use Propaganda\Domain\Dto\EditEventRequest;
 use Propaganda\Domain\Dto\EditFeaturedArticlesRequest;
 use Propaganda\Domain\Dto\NewArticleRequest;
 use Propaganda\Domain\Dto\NewEventRequest;
 use Propaganda\Domain\Dto\NewImageRequest;
 use Propaganda\Domain\Dto\EditVideoRequest;
+use Propaganda\Domain\Entity\Article\Chart;
 use Propaganda\Domain\Entity\Article\ContentInterface;
 use Propaganda\Domain\Entity\Article\Image;
 use Propaganda\Domain\Entity\Article\Text;
@@ -18,6 +21,7 @@ use Propaganda\Domain\EventService;
 use Propaganda\Domain\FeaturedArticlesService;
 use Propaganda\Domain\ImageService;
 use Propaganda\Domain\Repository\ArticleRepositoryInterface;
+use Propaganda\Domain\Repository\ChartRepositoryInterface;
 use Propaganda\Domain\Repository\EventRepositoryInterface;
 use Propaganda\Domain\Repository\ImageRepositoryInterface;
 use Propaganda\Domain\Repository\VideoRepositoryInterface;
@@ -25,6 +29,7 @@ use Propaganda\Domain\VideoService;
 use Propaganda\Infrastructure\FormType\CreateArticleType;
 use Propaganda\Infrastructure\FormType\CreateEventType;
 use Propaganda\Infrastructure\FormType\CreateImageType;
+use Propaganda\Infrastructure\FormType\EditChartType;
 use Propaganda\Infrastructure\FormType\EditVideoType;
 use Propaganda\Infrastructure\FormType\EditEventType;
 use Propaganda\Infrastructure\FormType\EditFeaturedArticlesType;
@@ -51,12 +56,16 @@ class AdminController extends Controller
         /** @var VideoRepositoryInterface $videoRepository */
         $videoRepository = $this->container->get('propaganda.video_repository');
         $videos = $videoRepository->getNewest(20);
+        /** @var ChartRepositoryInterface $chartRepository */
+        $chartRepository = $this->container->get('propaganda.chart_repository');
+        $charts = $chartRepository->getNewest(20);
 
         return $this->render('admin/dashboard.html.twig', [
             'articles' => $articles,
             'events' => $events,
             'images' => $images,
-            'videos' => $videos
+            'videos' => $videos,
+            'charts' => $charts
         ]);
     }
 
@@ -121,6 +130,8 @@ class AdminController extends Controller
                 $contentItem = new YoutubeVideo($item['value']);
             } elseif ($item['type'] === 'image') {
                 $contentItem = new Image(Uuid::fromString($item['value']));
+            } elseif ($item['type'] === 'chart') {
+                $contentItem = new Chart(Uuid::fromString($item['value']));
             } else {
                 continue;
             }
@@ -269,4 +280,36 @@ class AdminController extends Controller
 
         return $this->redirectToRoute('dashboard');
     }
+
+    public function createChartAction(Request $request)
+    {
+        /** @var ChartService $service */
+        $service = $this->container->get('propaganda.chart');
+        $newChartId = $service->addEmptyChart();
+
+        return $this->redirectToRoute('edit_chart', ['id' => $newChartId->toString()]);
+    }
+
+    public function editChartAction($id, Request $request)
+    {
+        /** @var ChartService $chartService */
+        $chartService = $this->container->get('propaganda.chart');
+        $chart = $chartService->getChart(Uuid::fromString($id));
+
+        $editChartRequest = EditChartRequest::fromChart($chart);
+
+        $form = $this->createForm(EditChartType::class, $editChartRequest);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var ChartService $chartService */
+            $chartService = $this->container->get('propaganda.chart');
+            $chartService->editChart($editChartRequest);
+
+            return $this->redirectToRoute('edit_chart', ['id' => $id]);
+        }
+
+        return $this->render('admin/editChart.html.twig', ['form' => $form->createView()]);
+    }
+
 }

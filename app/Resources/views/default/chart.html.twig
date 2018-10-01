@@ -1,0 +1,28 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>
+    google.load('visualization', '1.1', {'packages': ['corechart', 'bar', 'line']});
+
+    google.setOnLoadCallback(function () {
+        var data = new google.visualization.DataTable();
+
+        {% for column in chart.columns %}
+        data.addColumn('{{ column.type }}', '{{ column.name }}');
+        {% endfor %}
+        data.addRows([
+            {% for row in chart.data %}
+            [{% for column in chart.columns %}
+                {% if column.type == 'string' %}'{{ row[loop.index0] }}'{% else %}{{ row[loop.index0] }}{% endif %},
+                {% endfor %}],
+            {% endfor %}
+        ]);
+
+        var options = {
+            height: 400
+        };
+
+        var chart = new google.visualization.{{ chart.type|capitalize }}Chart(document.getElementById('{{ chart.id }}'));
+        chart.draw(data, options);
+    });
+</script>
+
+<p class="description">Wykres: {{ chart.name }}</p>

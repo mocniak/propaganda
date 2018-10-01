@@ -62,4 +62,16 @@
             <li>Brak obrazów.</li>
         {% endfor %}
     </ul>
+
+    <h2>Wykresy</h2>
+    <p><a href="{{ path('create_chart') }}">+ dodaj</a></p>
+    <ul>
+        {% for chart in charts %}
+            <li>
+                {{ chart.name }} | <a href="{{ path('edit_chart', {'id': chart.id }) }}">[edytuj]</a>
+            </li>
+        {% else %}
+            <li>Brak wykresów.</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

@@ -51,6 +51,7 @@ doctrine:
         types:
             uuid: Ramsey\Uuid\Doctrine\UuidType
             contentType: Propaganda\Infrastructure\FieldType\ContentType
+            columnsType: Propaganda\Infrastructure\FieldType\ColumnsType
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'

@@ -1,16 +1,18 @@
-Propaganda\Domain\Entity\Video:
+Propaganda\Domain\Entity\Chart:
   type: entity
-  table: videos
+  table: charts
   id:
     id:
       type: uuid
       generator: { strategy: NONE }
   fields:
-    title:
+    name:
       type: text
-    description:
-      type: text
-    youtubeId:
-      type: text
+    data:
+      type: array
+    columns:
+      type: columnsType
+    type:
+      type: string
     createdAt:
       type: datetime_immutable

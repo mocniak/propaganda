@@ -1,0 +1,7 @@
+Propaganda\Domain\Entity\Chart\Column:
+  type: embeddable
+  fields:
+    name:
+      type: text
+    type:
+      type: text
