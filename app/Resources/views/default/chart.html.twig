@@ -2,7 +2,7 @@
 <script>
     google.load('visualization', '1.1', {'packages': ['corechart', 'bar', 'line']});
 
-    function draw_charts() {
+    google.setOnLoadCallback(function () {
         var data = new google.visualization.DataTable();
 
         {% for column in chart.columns %}
@@ -17,13 +17,12 @@
         ]);
 
         var options = {
-            height: 400,
-            vAxis: {title: 'Zdarzenia z udziałem rowerzystów i ich ofiary '}
+            height: 400
         };
 
         var chart = new google.visualization.{{ chart.type|capitalize }}Chart(document.getElementById('{{ chart.id }}'));
         chart.draw(data, options);
-    }
-
-    google.setOnLoadCallback(draw_charts);
+    });
 </script>
+
+<p class="description">Wykres: {{ chart.name }}</p>
