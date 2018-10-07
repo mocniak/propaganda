@@ -8,6 +8,7 @@ class Chart
     const TYPE_PIE = 'pie';
     const TYPE_LINE = 'line';
     const TYPE_COLUMN = 'column';
+    const TYPE_BAR = 'bar';
 
     private $id;
     private $name;

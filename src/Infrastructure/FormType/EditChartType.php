@@ -31,6 +31,7 @@ class EditChartType extends AbstractType
                     'Column' => Chart::TYPE_COLUMN,
                     'Pie' => Chart::TYPE_PIE,
                     'Line' => Chart::TYPE_LINE,
+                    'Bar' => Chart::TYPE_BAR,
                 ]
             ])
             ->add('data', TextareaType::class)
