@@ -1,3 +1,7 @@
+# app/config/routing.yml
+propaganda_cms:
+  # loads routes from the given routing file stored in some bundle
+  resource: '../../vendor/mocniak/propaganda-cms/config/routing.yml'
 homepage:
   path:     /
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::indexAction }
@@ -13,6 +17,10 @@ contact_page:
 about_us_page:
   path: /o-nas
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::aboutUsAction }
+
+test2:
+  path: /test2
+  defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::test2 }
 
 dashboard:
   path: /admin

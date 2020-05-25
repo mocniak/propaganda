@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1c706de09ed4cb8274bf4f5c862cf88",
+    "content-hash": "67dbb97ceb0c32dfcd2d23102541f8d9",
     "packages": [
         {
             "name": "aptoma/twig-markdown",
@@ -1497,6 +1497,42 @@
                 "minification"
             ],
             "time": "2016-11-11T18:43:20+00:00"
+        },
+        {
+            "name": "mocniak/propaganda-cms",
+            "version": "0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mocniak/propaganda-cms.git",
+                "reference": "6c3f131935a1c29d4e6f5909142f376f07681472"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mocniak/propaganda-cms/zipball/6c3f131935a1c29d4e6f5909142f376f07681472",
+                "reference": "6c3f131935a1c29d4e6f5909142f376f07681472",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Mocniak\\PropagandaCMS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "properiatary"
+            ],
+            "authors": [
+                {
+                    "name": "Karol Mocniak",
+                    "email": "karol@mocniak.pl"
+                }
+            ],
+            "description": "Skeleton of a Propaganda CMS based on symfony and doctrine",
+            "time": "2020-05-25T20:08:28+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5025,9 +5061,9 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.1",
