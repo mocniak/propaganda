@@ -2,7 +2,6 @@
 
 namespace Propaganda\Infrastructure\Controller;
 
-use Mocniak\PropagandaCMS\ExampleClass;
 use Propaganda\Domain\ArticleService;
 use Propaganda\Domain\EventService;
 use Propaganda\Domain\FeaturedArticlesService;
@@ -53,11 +52,6 @@ class DefaultController extends Controller
     public function aboutUsAction()
     {
         return $this->render('default/about_us.html.twig');
-    }
-
-    public function test2()
-    {
-        return new Response(ExampleClass::hello());
     }
 
     public function recentArticles($limit)

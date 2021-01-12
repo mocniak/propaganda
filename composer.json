@@ -5,6 +5,12 @@
     "type": "project",
     "minimum-stability" : "dev",
     "prefer-stable" : true,
+    "repositories":[
+        {
+            "type": "vcs",
+            "url": "git@github.com:mocniak/propaganda-bundle.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Propaganda\\": "src/"
@@ -31,7 +37,7 @@
         "doctrine/orm": "^2.5",
         "erusev/parsedown": "^1.7",
         "incenteev/composer-parameter-handler": "^2.0",
-        "mocniak/propaganda-cms": "^0.0.3",
+        "mocniak/propaganda-bundle": "dev-master",
         "ramsey/uuid": "^3.7",
         "ramsey/uuid-doctrine": "^1.4",
         "sensio/distribution-bundle": "^5.0.19",
