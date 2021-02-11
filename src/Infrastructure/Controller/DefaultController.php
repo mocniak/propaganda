@@ -19,7 +19,7 @@ class DefaultController extends Controller
         /** @var FeaturedArticlesService $featuredArticlesService */
         $featuredArticlesService = $this->container->get('propaganda.featured_articles');
         $featuredArticles = $featuredArticlesService->getFeatured();
-        $articles = $featuredArticlesService->getNotFeatured(10);
+        $articles = $featuredArticlesService->getNotFeatured(6);
 
         /** @var EventService $eventService */
         $eventService = $this->container->get('propaganda.event');
