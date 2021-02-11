@@ -36,4 +36,11 @@ class DoctrineVideoRepository implements VideoRepositoryInterface
     {
         return $this->repository->findBy([], ['createdAt' => 'DESC'], $int);
     }
+
+    public function delete(UuidInterface $videoId): void
+    {
+        $videoToDelete = $this->repository->find($videoId);
+        $this->entityManager->remove($videoToDelete);
+        $this->entityManager->flush();
+    }
 }

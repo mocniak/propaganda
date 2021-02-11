@@ -44,7 +44,7 @@
     <ul>
         {% for video in videos %}
             <li>
-                {{ video.title }} | <a href="{{ path('edit_video', {'id': video.id }) }}">[edytuj]</a>
+                {{ video.title }} | <a href="{{ path('edit_video', {'id': video.id }) }}">[edytuj]</a> | <a href="{{ path('delete_video', {'id': video.id }) }}">[usuń]</a>
             </li>
         {% else %}
             <li>Brak filmów.</li>

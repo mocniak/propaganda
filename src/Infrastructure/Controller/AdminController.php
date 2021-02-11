@@ -251,6 +251,14 @@ class AdminController extends Controller
         return $this->render('admin/addVideo.html.twig', ['form' => $form->createView()]);
     }
 
+    public function deleteVideoAction($id) {
+        /** @var VideoService $videoService */
+        $videoService = $this->container->get('propaganda.video');
+        $videoService->deleteVideo(Uuid::fromString($id));
+
+        return $this->redirectToRoute('dashboard');
+    }
+
     public function editFeaturedArticlesAction(Request $request)
     {
         /** @var FeaturedArticlesService $featuredArticlesService */

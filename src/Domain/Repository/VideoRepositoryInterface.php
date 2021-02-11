@@ -12,4 +12,6 @@ interface VideoRepositoryInterface
     public function get(UuidInterface $id): Video;
 
     public function getNewest($int): array;
+
+    public function delete(UuidInterface $videoId): void;
 }

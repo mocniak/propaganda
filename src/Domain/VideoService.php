@@ -46,4 +46,10 @@ class VideoService
 
         return $video->getId();
     }
+
+    public function deleteVideo(UuidInterface $videoId)
+    {
+        $this->repository->delete($videoId);
+    }
+
 }
