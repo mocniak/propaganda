@@ -3,9 +3,7 @@
 namespace Propaganda\Infrastructure\Repository;
 
 use Doctrine\ORM\EntityManager;
-use Propaganda\Domain\Entity\Article;
 use Propaganda\Domain\Entity\Event;
-use Propaganda\Domain\Repository\ArticleRepositoryInterface;
 use Propaganda\Domain\Repository\EventRepositoryInterface;
 use Ramsey\Uuid\UuidInterface;
 
