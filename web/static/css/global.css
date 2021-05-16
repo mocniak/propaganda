@@ -359,8 +359,8 @@ iframe.youtube {
     }
 
     #top-news div.item-1 {
-        width: calc(60% - 10px);
-        height: 400px;
+        width: calc(100% - 10px);
+        height: 600px;
     }
 
     #top-news div.item-1 a {

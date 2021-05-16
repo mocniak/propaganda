@@ -18,3 +18,7 @@ parameters:
 
     images_directory: '%kernel.project_dir%/web/images'
     featured_directory: '%kernel.project_dir%/web/featured'
+twig:
+    globals:
+        website_name: Propaganda Site Name
+        website_url: beta.miastadlarowerow.local
