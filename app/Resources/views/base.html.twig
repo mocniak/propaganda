@@ -14,7 +14,7 @@
 </head>
 <body>
 <nav class="container">
-    <a href="{{ path('homepage') }}"><img style="width: 162px; margin: 5px" src="{{ asset('static/img/logo_mdr.png') }}"></a>
+    <a href="{{ path('homepage') }}"><img style="width: 162px; margin: 15px 5px 5px -9px" src="{{ asset('static/img/logo_mdr.png') }}"></a>
     <ul>
         <li>
             <a href="#o-stowarzyszeniu">O stowarzyszeniu</a>
@@ -32,8 +32,9 @@
 </div>
 {% block javascripts %}{% endblock %}
 <footer>
-    <p>{{website_name}}</p>
-    <p><a href="{{ path('contact_page') }}">Kontakt</a> &centerdot; <a href="{{ path('about_us_page') }}">O nas</a></p>
+    <p class="website-name">{{website_name}}</p>
+    <p>REGON: 021759674, NIP: 8971776894, KRS: 0000376302</p>
+    <p><a href="mailto:kontakt@miastadlarowerow.org">kontakt@miastadlarowerow.org</a></p>
 </footer>
 </body>
 </html>

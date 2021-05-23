@@ -3,18 +3,18 @@
 /* Padding below the footer and lighter body text */
 
 body {
-    font-size: 14px;
+    font-size: 15px;
     font-family: "Quicksand", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-bottom: 0;
     color: #5a5a5a;
 }
 
 a {
-    color: #337ab7;
+    color: #eb4900;
 }
 @media (min-width: 768px) {
     nav > ul {
-        margin: 45px -15px 0 0;
+        margin: 56px -15px 0 0;
         float: right !important;
     }
 }
@@ -49,10 +49,24 @@ h3 a {
 footer {
     padding: 30px 30px 20px 30px;
     margin-top: 70px;
-    border-top: 1px solid #e5e5e5;
     background-color: #f5f5f5;
+    text-align: center;
 }
 
+footer .website-name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+footer ul {
+    /*list-style: none;*/
+    margin: 0;
+    padding: 0;
+}
+
+footer li {
+    display: inline-block;
+}
 footer .links a {
     margin-right: 20px;
 }
@@ -82,7 +96,7 @@ footer .links a {
 }
 
 #article th {
-    background-color: #4a90e2;
+    background-color: #eb4900;
     color: white;
     text-align: center;
 }
@@ -149,8 +163,8 @@ footer .links a {
 
 #root input[type="submit"] {
     font-weight: bold;
-    border: 2px solid #4a90e2;
-    background-color: #4a90e2;
+    border: 2px solid #eb4900;
+    background-color: #eb4900;
     padding: 5px 16px;
     color: white;
     margin: 10px 0;
@@ -158,7 +172,7 @@ footer .links a {
 
 #root input[type="submit"]:hover {
     background-color: white;
-    color: #4a90e2;
+    color: #eb4900;
 }
 
 .add-content-widget select {
@@ -172,16 +186,16 @@ footer .links a {
 }
 
 .add-content-widget .add-content-button {
-    color: #4a90e2;
+    color: #eb4900;
     font-weight: bold;
-    border: 2px solid #4a90e2;
+    border: 2px solid #eb4900;
     padding: 5px 16px;
     float: left;
     margin: 0 10px 10px 10px;
 }
 
 .add-content-widget .add-content-button:hover {
-    background-color: #4a90e2;
+    background-color: #eb4900;
     color: white;
     cursor: pointer;
 }
@@ -236,8 +250,7 @@ h2.banner {
     margin: 10px 0;
     padding: 10px 0 10px 10px;
     display: block;
-    color: white;
-    background-color: #333333;
+    font-weight: bold;
 }
 
 #top-news {
@@ -245,7 +258,7 @@ h2.banner {
 }
 
 #top-news > div {
-    height: 195px;
+    height: 500px;
     width: 100%;
     margin: 5px 0;
     color: white;
@@ -271,26 +284,7 @@ h2.banner {
 }
 
 .news-column {
-    border-top: solid 5px #4a90e2;
     padding: 20px 0 0 0;
-}
-
-footer {
-    background-color: #333333;
-    font-size: 20px;
-    color: white;
-    text-align: center;
-    font-weight: bold;
-}
-
-footer ul {
-    /*list-style: none;*/
-    margin: 0;
-    padding: 0;
-}
-
-footer li {
-    display: inline-block;
 }
 
 .logo {
@@ -324,6 +318,9 @@ iframe.youtube {
 }
 
 @media (min-width: 1024px) {
+    .fb-page {
+        margin: 35px 0 0 0;
+    }
     #article {
         float: left;
         width: 66.7%;
@@ -378,14 +375,31 @@ iframe.youtube {
     }
 
     .news-item {
-        height: 477px;
         float: left;
+        width: 100%;
+        height: 210px;
+        margin: 20px 0;
+    }
+
+    .news-item-image {
+        width: 300px;
+        float: left;
+    }
+    .news-item-content {
+        float: right;
+        width: calc(100% - 347px);
+    }
+
+    .news-item-content p {
+        overflow : hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
     }
 
     .news-column {
         width: calc(66% - 5px);
-        margin: 15px 0;
-        column-count: 2;
         float: left;
     }
 
@@ -444,8 +458,8 @@ iframe.youtube {
         clear: both;
         float: right;
         font-weight: bold;
-        border: 2px solid #4a90e2;
-        background-color: #4a90e2;
+        border: 2px solid #eb4900;
+        background-color: #eb4900;
         padding: 5px 16px;
         color: white;
         margin: 10px;
@@ -454,6 +468,6 @@ iframe.youtube {
 
     #simple-form button[type="submit"]:hover {
         background-color: white;
-        color: #4a90e2;
+        color: #eb4900;
     }
 }
