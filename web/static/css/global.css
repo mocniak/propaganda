@@ -317,20 +317,14 @@ iframe.youtube {
     }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 992px) {
     .fb-page {
         margin: 35px 0 0 0;
     }
-    #article {
-        float: left;
+    #article, #sidebar {
+        margin-left: 16%;
+        margin-right: 16%;
         width: 66.7%;
-        padding-right: 15px;
-    }
-
-    #sidebar {
-        float: right;
-        width: 33.3%;
-        padding-left: 15px;
     }
 
     #article h1 {
