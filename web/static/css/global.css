@@ -13,24 +13,41 @@ a {
     color: #eb4900;
 }
 
+.container {
+    position: relative;
+}
+
 nav > ul {
-    margin: 56px -15px 0 0;
-    float: right !important;
+    padding: 0;
+    width: 320px;
+    margin: 0 auto;
+}
+nav > ul > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 15px 10px 15px;
+}
+@media (min-width: 600px) {
+    nav > ul {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: auto;
+    }
+
+    nav > ul > li > a {
+        position: relative;
+        display: block;
+        padding: 18px 15px 3px 15px;
+    }
 }
 
-nav>ul>li {
+nav > ul > li {
     float: left;
-}
-nav>ul>li {
     position: relative;
     display: block;
 }
 
-nav>ul>li>a {
-    position: relative;
-    display: block;
-    padding: 18px 15px;
-}
 
 h3 a {
     font-weight: bold;
@@ -67,6 +84,7 @@ footer ul {
 footer li {
     display: inline-block;
 }
+
 footer .links a {
     margin-right: 20px;
 }
@@ -321,6 +339,7 @@ iframe.youtube {
     .fb-page {
         margin: 35px 0 0 0;
     }
+
     #article, #sidebar {
         margin-left: 16%;
         margin-right: 16%;
@@ -379,13 +398,14 @@ iframe.youtube {
         width: 300px;
         float: left;
     }
+
     .news-item-content {
         float: right;
         width: calc(100% - 347px);
     }
 
     .news-item-content p {
-        overflow : hidden;
+        overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 5;
