@@ -12,12 +12,12 @@ body {
 a {
     color: #eb4900;
 }
-@media (min-width: 768px) {
-    nav > ul {
-        margin: 56px -15px 0 0;
-        float: right !important;
-    }
+
+nav > ul {
+    margin: 56px -15px 0 0;
+    float: right !important;
 }
+
 nav>ul>li {
     float: left;
 }
