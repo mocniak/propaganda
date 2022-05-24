@@ -54,25 +54,22 @@
             </div>
         {% endfor %}
         <div class="all-articles-button" style="background-color: #337ab7; float: left; width: 100%;"><a
-                    style="display: block; color: white; font-weight: bold; padding: 20px;text-align: center" href="{{ path('all_articles') }}">Wszystkie
+                    style="display: block; color: white; font-weight: bold; padding: 20px;text-align: center"
+                    href="{{ path('all_articles') }}">Wszystkie
                 artykuły»</a></div>
     </div>
     <div class="events-column">
         <h2 class="banner">Wydarzenia</h2>
         {% for event in events %}
             <div class="event-item clearfix" style="margin: 0">
-                <div class="news-item-content">
-                    <p style="font-size: 20px">{{ event.date.format('Y-m-d') }} |
-                        <strong>{{ event.title }}</strong></p>
-                    {% markdown %}{{ event.description }}{% endmarkdown %}
-                </div>
+                <p style="font-size: 20px">{{ event.date.format('Y-m-d') }} |
+                    <strong>{{ event.title }}</strong></p>
+                {% markdown %}{{ event.description }}{% endmarkdown %}
                 <hr>
             </div>
         {% else %}
             <div class="event-item clearfix" style="margin: 15px 0">
-                <div class="news-item-content col-lg-8">
-                    Brak zbliżających się wydarzeń.
-                </div>
+                Brak zbliżających się wydarzeń.
             </div>
         {% endfor %}
         <h2 class="banner">Facebook</h2>
