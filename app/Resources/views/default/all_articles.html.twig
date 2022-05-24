@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="news-column">
+        {% for article in articles %}
+            <div class="news-item">
+                {% if article.coverImageId is not null %}
+                    <div class="news-item-image"
+                         style="background-image: url('{{ path('image_content', {'id': article.coverImageId}) }}');">
+                        <a href="{{ path('show_article', {'slug': article.slug}) }}" class="cover-all"></a>
+                    </div>
+                {% endif %}
+                <div class="news-item-content">
+                    <h3><a href="{{ path('show_article', {'slug': article.slug}) }}"> {{ article.title }}</a></h3>
+                    {% set break = false %}
+                    {% for element in article.content if not break %}
+                        {% if element.type == 'text' %}
+                            <p>{{ element.value|length > 320 ? element.value|slice(0, 320) ~ '...' : element.value }}</p>
+                            {% set break = true %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <div class="news-item" style="margin: 15px 0">
+                <div class="news-item-content">
+                    <h3>Brak artykułów</h3>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

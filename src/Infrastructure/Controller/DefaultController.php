@@ -44,6 +44,14 @@ class DefaultController extends Controller
         return $this->render('default/article.html.twig', ['article' => $article]);
     }
 
+    public function articlesAction()
+    {
+        /** @var ArticleService $articleService */
+        $articleService = $this->container->get('propaganda.article');
+        $articles = $articleService->getAllArticles();
+        return $this->render('default/all_articles.html.twig', ['articles' => $articles]);
+    }
+
     public function contactAction()
     {
         return $this->render('default/contact.html.twig');

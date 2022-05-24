@@ -50,9 +50,7 @@ class ArticleService
 
     public function getRecent($limit): array
     {
-        $articles = $this->articleRepository->getNewestPublished($limit);
-
-        return $articles;
+        return $this->articleRepository->getNewestPublished($limit);
     }
 
     public function getArticleBySlug(string $slug): Article
@@ -72,5 +70,10 @@ class ArticleService
         $article = $this->articleRepository->get($articleId);
         $article->withdraw();
         $this->articleRepository->save($article);
+    }
+
+    public function getAllArticles(): array
+    {
+        return $this->articleRepository->getNewestPublished(100);
     }
 }

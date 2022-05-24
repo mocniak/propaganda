@@ -6,6 +6,10 @@ show_article:
   path: /art/{slug}
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::articleAction }
 
+all_articles:
+  path: /art
+  defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::articlesAction }
+
 contact_page:
   path: /kontakt
   defaults: { _controller: Propaganda\Infrastructure\Controller\DefaultController::contactAction }
